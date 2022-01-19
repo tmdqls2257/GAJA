@@ -8,7 +8,7 @@ CREATE TABLE user (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE licens (
+CREATE TABLE license (
   id INT AUTO_INCREMENT,
   name varchar(255),
   expiration INT,
@@ -22,11 +22,11 @@ CREATE TABLE bookmark (
   title varchar(255),
   userId varchar(255) NOT NULL,
   created_at datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (title)
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE scholarship (
-  id varchar(255),
+  id INT AUTO_INCREMENT,
   products varchar(255),
   contact varchar(255),
   uni varchar(255),
@@ -36,11 +36,12 @@ CREATE TABLE scholarship (
   period varchar(255),
   qualification varchar(255),
   document varchar(255),
+  productId int,
   PRIMARY KEY (id)
 );
 
-ALTER TABLE licens ADD FOREIGN KEY (id) REFERENCES user (id);
+ALTER TABLE license ADD FOREIGN KEY (id) REFERENCES user (id);
 
 ALTER TABLE bookmark ADD FOREIGN KEY (id) REFERENCES user (id);
 
-ALTER TABLE scholarship ADD FOREIGN KEY (products) REFERENCES bookmark (title);
+ALTER TABLE scholarship ADD FOREIGN KEY (productId) REFERENCES bookmark (id);
