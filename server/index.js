@@ -18,7 +18,16 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.post("/login", controllers.login);
+app.post("/login", controllers.login);       //로그인
+app.post("/logout", controllers.logout);     //로그아웃
+app.post('/signin', controllers.signin);     //회원가입
+app.delete('/signout', controllers.signout); //회원탈퇴
+app.post('/memo', controllers.memo);         //메모
+app.post('/bookmark', controllers.bookmark); //즐겨찾기
+app.get('/internship',controllers.internship); //인턴십
+app.get('/scholarship',controllers.scholarship);//장학금
+app.get('/mypage',controllers.mypage);
+
 app.get("/accesstokenrequest", controllers.accessTokenRequest);
 app.get("/refreshtokenrequest", controllers.refreshTokenRequest);
 
