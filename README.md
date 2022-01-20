@@ -20,3 +20,5 @@ npm i sequelize
 npm i mongodb
 npm i cookie-parser
 ```
+
+// 수정 필요
