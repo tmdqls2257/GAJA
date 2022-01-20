@@ -21,4 +21,4 @@ npm i mongodb
 npm i cookie-parser
 ```
 
-// 수정 필요
+// 수정이 필요합니다.
