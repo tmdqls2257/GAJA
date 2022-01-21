@@ -1,7 +1,7 @@
  
-CREATE TABLE user (
-  id INT NOT NULL AUTO_INCREMENT,
-  userId varchar(255) NOT NULL,
+CREATE TABLE users (
+  id INT AUTO_INCREMENT,
+  userName varchar(255) NOT NULL,
   email varchar(255) NOT NULL,
   phoneNumber INT NOT NULL,
   password INT NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE user (
 CREATE TABLE license (
   id INT AUTO_INCREMENT,
   name varchar(255),
-  expiration INT,
+  expiration varchar(255),
   userId varchar(255) NOT NULL,
   PRIMARY KEY (id)
 );
@@ -21,7 +21,6 @@ CREATE TABLE bookmark (
   url varchar(255),
   title varchar(255),
   userId varchar(255) NOT NULL,
-  created_at datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 );
 
@@ -40,8 +39,8 @@ CREATE TABLE scholarship (
   PRIMARY KEY (id)
 );
 
-ALTER TABLE license ADD FOREIGN KEY (id) REFERENCES user (id);
+ALTER TABLE license ADD FOREIGN KEY (id) REFERENCES users (id);
 
-ALTER TABLE bookmark ADD FOREIGN KEY (id) REFERENCES user (id);
+ALTER TABLE bookmark ADD FOREIGN KEY (id) REFERENCES users (id);
 
 ALTER TABLE scholarship ADD FOREIGN KEY (productId) REFERENCES bookmark (id);
