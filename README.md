@@ -3,9 +3,11 @@
 ```jsx
 // 실시간 채팅 사용시
 npm i socket.io-client
-
-npm install styled-components
-npm install react-router-dom
+npm i axios
+npm i react-redux
+npm i react-router
+npm i react-router-dom
+npm i styled-components
 ```
 
 ## **서버에 설치한 파일**
@@ -21,4 +23,3 @@ npm i mongodb
 npm i cookie-parser
 ```
 
-// 수정이 필요합니다.
