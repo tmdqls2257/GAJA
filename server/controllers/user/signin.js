@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
     return res.status(409).json({message:`${email} already exsits`})
   }
 
-  const user = await User.createUser({
+  const user = await User.create({
     username,
     email,
     password,
