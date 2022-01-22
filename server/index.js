@@ -21,7 +21,6 @@ app.use(cookieParser())
 // app.post("/login", controllers.login);       //로그인
 // app.post("/logout", controllers.logout);     //로그아웃
 app.use('/user', userRoute) // 회원가입
-app.use('/user', userRoute) // 회원탈퇴
 // app.post('/memo', controllers.memo);         //메모
 // app.post('/bookmark', controllers.bookmark); //즐겨찾기
 // app.get('/internship',controllers.internship); //인턴십

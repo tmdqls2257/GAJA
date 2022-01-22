@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-node_modules
-.env
-localhost
-
-=======
 .env
 localhost
 node_modules
->>>>>>> feature-signin
 *package-lock.json
 *.pem
