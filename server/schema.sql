@@ -3,7 +3,6 @@ CREATE TABLE users (
   id INT AUTO_INCREMENT,
   userName varchar(255) NOT NULL,
   email varchar(255) NOT NULL,
-  refreshToken VARCHAR(255),
   password INT NOT NULL,
   PRIMARY KEY (id)
 );

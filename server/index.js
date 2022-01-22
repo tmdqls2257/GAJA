@@ -7,6 +7,8 @@ const express = require('express')
 const app = express()
 
 const userRoute = require('./routes/user.js')
+const pageRoute = require('./routes/page.js')
+const mypageRoute = require('./routes/mypage.js')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -18,14 +20,9 @@ app.use(
   })
 )
 app.use(cookieParser())
-// app.post("/login", controllers.login);       //로그인
-// app.post("/logout", controllers.logout);     //로그아웃
-app.use('/user', userRoute) // 회원가입
-// app.post('/memo', controllers.memo);         //메모
-// app.post('/bookmark', controllers.bookmark); //즐겨찾기
-// app.get('/internship',controllers.internship); //인턴십
-// app.get('/scholarship',controllers.scholarship);//장학금
-// app.get('/mypage',controllers.mypage);
+app.use('/user', userRoute) // 회원가입,회원탈퇴,로그인,로그아웃
+// app.use('/page', pageRoute) // 시작페이지,인턴십,장학금
+// app.use('/mypage', mypageRoute) //마이페이지,개인정보수정,자격증 등록 및 삭제
 
 // app.get("/accesstokenrequest", controllers.accessTokenRequest);
 // app.get("/refreshtokenrequest", controllers.refreshTokenRequest);
