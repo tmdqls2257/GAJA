@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       expiration: DataTypes.STRING,
-      userId: DataTypes.STRING,
     },
     {
       sequelize,

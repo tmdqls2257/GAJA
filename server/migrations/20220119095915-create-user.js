@@ -17,10 +17,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      phoneNumber: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     })
   },
   async down (queryInterface, Sequelize) {

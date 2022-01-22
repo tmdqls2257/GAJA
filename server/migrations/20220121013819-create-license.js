@@ -14,9 +14,6 @@ module.exports = {
       expiration: {
         type: Sequelize.STRING
       },
-      userId: {
-        type: Sequelize.STRING
-      }
     })
   },
   async down (queryInterface, Sequelize) {
