@@ -13,7 +13,7 @@ module.exports = {
       },
       expiration: {
         type: Sequelize.STRING
-      },
+      }
     })
   },
   async down (queryInterface, Sequelize) {
