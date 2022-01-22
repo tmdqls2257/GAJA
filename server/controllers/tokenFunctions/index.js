@@ -9,7 +9,7 @@ module.exports = {
     return sign(data, process.env.REFRESH_SECRET, { expiresIn: '30d' })
   },
   sendRefreshToken: (res, refreshToken) => {
-    res.cookie('refreshToken', refreshToken, {
+    res.cookie('acessToken', refreshToken, {
       httpOnly: true
     })
   },
@@ -24,7 +24,7 @@ module.exports = {
     if (!authorization) {
       return null
     }
-    const token = authorization.split(' ')[1]
+    const token = authorization.split('=')[1]
     try {
       return verify(token, process.env.ACCESS_SECRET)
     } catch (err) {

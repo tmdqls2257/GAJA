@@ -16,7 +16,7 @@ module.exports = {
       },
       userName: {
         type: Sequelize.STRING
-      },
+      }
     })
   },
   async down (queryInterface, Sequelize) {
