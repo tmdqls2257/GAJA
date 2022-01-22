@@ -17,9 +17,6 @@ module.exports = {
       userName: {
         type: Sequelize.STRING
       },
-      refreshToken: {
-        type: Sequelize.STRING
-      }
     })
   },
   async down (queryInterface, Sequelize) {

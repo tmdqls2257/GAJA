@@ -2,7 +2,7 @@ const { User } = require('../../models')
 const {
   generateAccessToken,
   generateRefreshToken,
-  saveRefreshToken,
+  sendRefreshToken,
   sendAccessToken
 } = require('../tokenFunctions')
 
@@ -24,7 +24,7 @@ module.exports = (req, res) => {
       const accessToken = generateAccessToken(data.dataValues)
       const refreshToken = generateRefreshToken(data.dataValues)
 
-      saveRefreshToken(data.dataValues, refreshToken)
+      sendRefreshToken(res, refreshToken)  
       sendAccessToken(res, accessToken)
     })
     .catch((err) => {
