@@ -1,5 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
+// import gaja from "../../public/images/logo";
+
+
+export const Logo = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+`
 
 
 export const Introduce = styled.div`
@@ -9,7 +19,6 @@ export const Introduce = styled.div`
   height: 100%;
   align-items: center;
   justify-content: center;
-  position: absolute;
 `
 
 export const Start = styled.div`
@@ -19,17 +28,17 @@ export const Start = styled.div`
   height: 100%;
   align-items: center;
   justify-content: center;
-  position: absolute;
 `
 
-function App () {
+function Begin () {
   return (
     <>
+      {/* <Logo>
       <img
-        src='https://cdn.discordapp.com/attachments/932852459003609098/934361076898861086/logo.png'
+        src={gaja}
         alt='GAJA Logo'
-        
-      />
+        />
+        </Logo> */}
       <Introduce>
         <h1>hi</h1>
       </Introduce>
@@ -40,4 +49,4 @@ function App () {
   )
 }
 
-export default App
+export default Begin
