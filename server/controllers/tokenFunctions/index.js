@@ -1,20 +1,27 @@
 require('dotenv').config()
 const { sign, verify } = require('jsonwebtoken')
+const { User } = require('../../models')
 
 module.exports = {
   generateAccessToken: (data) => {
-    return sign(data, process.env.ACCESS_SECRET, { expiresIn: '15s' })
+    return sign(data, process.env.ACCESS_SECRET, { expiresIn: '1h' })
   },
   generateRefreshToken: (data) => {
     return sign(data, process.env.REFRESH_SECRET, { expiresIn: '30d' })
   },
-  sendRefreshToken: (res, refreshToken) => {
-    res.cookie('refreshToken', refreshToken, {
-      httpOnly: true
+  saveRefreshToken: (data, refreshToken) => {
+    const email = data.email
+    User.update({
+      refreshToken: refreshToken
+    }, {
+      where: { email }
     })
   },
   sendAccessToken: (res, accessToken) => {
-    res.json({ data: { accessToken }, message: 'ok' })
+    res.cookie('accessToken', accessToken, {
+      httpOnly: true
+    })
+      .status(200).send({ data: null, message: 'ok' })
   },
   resendAccessToken: (res, accessToken, data) => {
     res.json({ data: { accessToken, userInfo: data }, message: 'ok' })
@@ -28,7 +35,6 @@ module.exports = {
     try {
       return verify(token, process.env.ACCESS_SECRET)
     } catch (err) {
-      // return null if invalid token
       return null
     }
   },

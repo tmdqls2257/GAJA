@@ -14,9 +14,12 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      name: {
+      userName: {
         type: Sequelize.STRING
       },
+      refreshToken: {
+        type: Sequelize.STRING
+      }
     })
   },
   async down (queryInterface, Sequelize) {
