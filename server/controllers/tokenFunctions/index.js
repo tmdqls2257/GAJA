@@ -10,15 +10,15 @@ module.exports = {
     return sign(data, process.env.REFRESH_SECRET, { expiresIn: '30d' })
   },
   sendRefreshToken: (res, refreshToken) => {
-    res.cookie("refreshToken", refreshToken, {
+    return res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
     });
   },
   sendAccessToken: (res, accessToken) => {
-    res.json({ data: { accessToken }, message: "ok" });
+    return res.json({ data: { accessToken }, message: "ok" });
   },
   resendAccessToken: (res, accessToken, data) => {
-    res.json({ data: { accessToken, userInfo: data }, message: 'ok' })
+    return res.send({ data: { accessToken, userInfo: data }, message: 'accessToken이 만료되어 다시 발급했습니다. 다시 시도해주세요.' })
   },
   isAuthorized: (req) => {
     const authorization = req.headers.authorization

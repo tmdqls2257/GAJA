@@ -13,6 +13,9 @@ module.exports = {
       },
       expiration: {
         type: Sequelize.STRING
+      },
+      userId: {
+        type: Sequelize.INTEGER
       }
     })
   },
