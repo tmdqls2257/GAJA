@@ -1,4 +1,4 @@
-const { User } = require('../../models')
+const { Users } = require('../../models')
 const {
   generateAccessToken,
   generateRefreshToken,
@@ -8,12 +8,14 @@ const {
 
 module.exports = (req, res) => {
   const { email, password } = req.body
-  User.findOne({
+  console.log(email, password);
+  Users.findOne({
     where: {
       email
     }
   })
     .then((data) => {
+      console.log(data);
       if (!data) {
         return res.status(400).send({ data: null, message: '회원가입이 필요합니다.' })
       } else if (data.dataValues.password !== password) {

@@ -1,7 +1,7 @@
 'use strict'
 const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class license extends Model {
+  class License extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,9 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  license.init(
+  License.init(
     {
       name: DataTypes.STRING,
+      userId:DataTypes.INTEGER,
       expiration: DataTypes.STRING
     },
     {
@@ -21,5 +22,5 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'license'
     }
   )
-  return license
+  return License
 }

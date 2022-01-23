@@ -9,10 +9,11 @@ CREATE TABLE users (
 
 CREATE TABLE license (
   id INT AUTO_INCREMENT,
+  userId INT NOT NULL,
   name varchar(255),
   expiration varchar(255),
   PRIMARY KEY (id)
 );
 
 
-ALTER TABLE license ADD FOREIGN KEY (id) REFERENCES users (id);
+ALTER TABLE license ADD FOREIGN KEY (userId) REFERENCES users (id);
