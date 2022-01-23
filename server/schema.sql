@@ -9,7 +9,7 @@ CREATE TABLE Users (
 
 CREATE TABLE License (
   id INT AUTO_INCREMENT,
-  userID INT NOT NULL,
+  userId INT NOT NULL,
   name varchar(255),
   expiration varchar(255),
   PRIMARY KEY (id)

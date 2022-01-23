@@ -27,7 +27,7 @@ module.exports = (req, res) => {
     User.findOne({ where: { email } })
     .then((userData) => {
         delete userData.dataValues.password
-        license.findOne({ where: {userId: userData.dataValues.id} })
+        license.findAll({ where: {userId: userData.dataValues.id} })
         .then((licenseData) => {
             return res.send({data: {userInfo: userData, license: licenseData}, message: '마이페이지'})
         })

@@ -4,6 +4,6 @@ module.exports = {
   signin: require('./user/signin'),
   signout: require('./user/signout'),
   mypage: require('./mypage/mypage'),
-  // memo: require('./mypage/memo'),
+  memo: require('./mypage/memo'),
   // memoDelete: require('./mypage/memoDelete'),
 }
