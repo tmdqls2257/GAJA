@@ -4,5 +4,5 @@ const controller = require('../controllers')
 
 router.get('/mypage', controller.mypage)
 router.post('/memo', controller.memo)
-// router.post('/memo-delete', controller.memo)
+router.post('/memo-delete', controller.memoDelete)
 module.exports = router
