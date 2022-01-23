@@ -8,14 +8,14 @@ const {
 
 module.exports = (req, res) => {
   const { email, password } = req.body
-  console.log(email, password);
+  console.log(email, password)
   Users.findOne({
     where: {
       email
     }
   })
     .then((data) => {
-      console.log(data);
+      console.log(data)
       if (!data) {
         return res.status(400).send({ data: null, message: '회원가입이 필요합니다.' })
       } else if (data.dataValues.password !== password) {
@@ -26,7 +26,7 @@ module.exports = (req, res) => {
       const accessToken = generateAccessToken(data.dataValues)
       const refreshToken = generateRefreshToken(data.dataValues)
 
-      sendRefreshToken(res, refreshToken)  
+      sendRefreshToken(res, refreshToken)
       sendAccessToken(res, accessToken)
     })
     .catch((err) => {

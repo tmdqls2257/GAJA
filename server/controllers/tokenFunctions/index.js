@@ -10,12 +10,12 @@ module.exports = {
     return sign(data, process.env.REFRESH_SECRET, { expiresIn: '30d' })
   },
   sendRefreshToken: (res, refreshToken) => {
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-    });
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true
+    })
   },
   sendAccessToken: (res, accessToken) => {
-    res.json({ data: { accessToken }, message: "ok" });
+    res.json({ data: { accessToken }, message: 'ok' })
   },
   resendAccessToken: (res, accessToken, data) => {
     res.json({ data: { accessToken, userInfo: data }, message: 'ok' })
@@ -26,7 +26,7 @@ module.exports = {
     try {
       return verify(token, process.env.ACCESS_SECRET)
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
   },
   checkRefeshToken: (refreshToken) => {
