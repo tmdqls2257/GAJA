@@ -36,7 +36,9 @@ module.exports = async (req, res) => {
                 .then((licenseData) => {
                     for(let i=0; i<licenseData.length; i++){
                         if(licenseData[i].name === name){
-                            return res.status(422).send({data:{userInfo: data,license: licenseData}, maessage:'이미 등록되어있습니다.'})
+                            return res.status(201)
+                            //.redirect('https://localhost:3000/mypage/mypage')
+                            .send({data:{userInfo: data,license: licenseData}, maessage:'이미 등록되어있습니다.'})
                         }
                     }
                     license.create({
