@@ -1,0 +1,9 @@
+.check {
+  font-size: 30px;
+  vertical-align: center;
+  font-weight: bolder;
+}
+
+#current {
+  font-size: 20px;
+}

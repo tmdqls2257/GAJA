@@ -1,9 +1,11 @@
 import React from 'react'
+import Begin from './pages/Begin'
+import Mypage from './components/Mypage'
 
 function App () {
   return (
     <>
-      <h1>hi</h1>
+      <Mypage />
     </>
   )
 }

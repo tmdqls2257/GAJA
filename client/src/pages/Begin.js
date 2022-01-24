@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import gaja from '../logo.png'
-import background from '../begin_background.jpeg'
+import gaja from '../images/logo.png'
+import background from '../images/begin_background.jpeg'
 
 export const Background = styled.div`
   display: flex;
