@@ -1,49 +1,92 @@
 import React from 'react'
 import styled from 'styled-components'
-// import gaja from "../../public/images/logo";
+import gaja from '../logo.png'
+import background from '../begin_background.jpeg'
 
+export const Background = styled.div`
+  display: flex;
+  margin: auto;
+  margin-top: -10%;
+  margin-right: -80%;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: -1;
+  /* max-height: 110%; */
+  /* overflow: hidden; */
+`
 
 export const Logo = styled.div`
   display: flex;
+  margin: auto;
+  margin-top: 4%;
   width: 100%;
   height: 100%;
   align-items: center;
   justify-content: center;
 `
 
-
 export const Introduce = styled.div`
-  color: red;
   display: flex;
-  width: 100%;
+  background-color: rgb(255, 255, 255, 0.2);
+  width: 62%;
   height: 100%;
+  margin: 4% auto 4% auto;
   align-items: center;
+  font-size: 17px;
+  text-align: center;
+  line-height: 40px;
   justify-content: center;
+  border-radius: 80px;
 `
 
 export const Start = styled.div`
-  color: black;
+  color: white;
+  background-color: #263A8D;
+  font-size: 14px;
   display: flex;
-  width: 100%;
+  margin: auto;
+  width: 12%;
   height: 100%;
   align-items: center;
   justify-content: center;
+  border-radius: 60px;
 `
 
 function Begin () {
   return (
     <>
-      {/* <Logo>
-      <img
-        src={gaja}
-        alt='GAJA Logo'
+      <Background>
+        <img
+          src={background}
+          className='background'
+          alt='Background'
+          width='130%'
+          // height='130%'
         />
-        </Logo> */}
+      </Background>
+      <Logo>
+        <img
+          src={gaja}
+          className='logo'
+          alt='GAJA Logo'
+          width='10%'
+        />
+      </Logo>
       <Introduce>
-        <h1>hi</h1>
+        <div>
+          <br /> 모든 것이 다 새로워 배워야 할 것도, 해야 할 것도 너무나 많아 바쁘기만 한 대학 생활.
+          <br /> 장학금과 인턴십과 같은 내게 필요한 정보들을 하나하나 손으로 직접 찾아서 알아보기엔 시간이 부족하기만 하죠.
+          <br /> 지금의 내 상황에서 신청해 볼 수 있는 장학금들, 인턴십 채용 분야들이 정리되어 한눈에 볼 수 있다면 얼마나 좋을까요?
+          <br /> 대학생활에 전념하고 있는 당신에게 꼭 필요한 정보를 모아놓은 GAJA 를 이용해보세요.
+          <br />
+          <br />
+        </div>
       </Introduce>
       <Start>
-        <div>시작하기</div>
+        <h1>시작하기</h1>
       </Start>
     </>
   )
