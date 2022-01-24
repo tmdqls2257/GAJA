@@ -1,29 +1,15 @@
 import React, { useState } from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
 
-const GlobalStyle = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* min-height: 100vh;
-    background: #297eff; */
-  }
-`
 export const Container = styled.div`
   @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+  
   display: flex;
   justify-content: space-between;
 
   > div {
       width: 100px;
-      height: 60px;
+      height: 30px;
       border: 3px solid #287dfc;
       border-radius: 60px;
       cursor: pointer;
@@ -33,7 +19,7 @@ export const Container = styled.div`
       align-items: center;
       font-size: 18px;
       transition: 0.3s;
-
+      margin-right: 10px;
       &:hover {
         transform: scale(1.1);
       }
@@ -43,10 +29,10 @@ export const Container = styled.div`
 const Navigation = () => {
   return (
     <>
-      <GlobalStyle />
       <Container>
         <div>로그인</div>
         <div>회원가입</div>
+        <div>GAJA 소개</div>
       </Container>
     </>
   )

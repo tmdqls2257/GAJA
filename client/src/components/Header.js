@@ -2,9 +2,36 @@ import React, { useState } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import Navigation from './Navigation'
 import Searchbar from './Searchbar'
-import background from '../begin_background.jpeg'
 
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+`
 
+export const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+export const Container = styled.div`
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
 const Header = () => {
-    return <h1>hei</h1>
+  return (
+    <Box>
+      <GlobalStyle />
+      <Container>
+        <Searchbar />
+        <Navigation />
+      </Container>
+    </Box>
+  )
 }
+
+export default Header

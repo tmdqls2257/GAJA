@@ -1,20 +1,11 @@
 import React, { useState } from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
+import gaja from '../logo.png'
 
-const GlobalStyle = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #297eff;
-  }
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items:center;
 `
 
 export const Search = styled.div`
@@ -22,13 +13,15 @@ export const Search = styled.div`
 
   position: relative;
   width: 360px;
-  height: 60px;
+  height: 50px;  //! 여기의 height과 Icon의 height이 같아야 돋보기 아이콘이 정중앙에 배치된다.
   background: #fff;
   border-radius: 60px;
   transition: 0.5s;
-  box-shadow: 0 0 0 5px #2573ef;
+  box-shadow: 0 0 0 3px #2573ef;
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
+  display: flex;
+  align-items:center;
 `
 
 export const Icon = styled.div`
@@ -36,7 +29,7 @@ export const Icon = styled.div`
   top: 0;
   left: 0;
   width: 60px;
-  height: 60px;
+  height: 50px;
   background: #fff;
   border-radius: 60px;
   display: flex;
@@ -67,7 +60,7 @@ export const Icon = styled.div`
 export const Input = styled.div`
   position: relative;
   width: 300px;
-  height: 60px;
+  height: 50px;
   left: 60px;
   display: flex;
   justify-content: center;
@@ -115,6 +108,12 @@ export const Clear = styled.span`
  }
 `
 
+export const Image = styled.img`
+  margin-right: 2rem;
+  width: 60px;
+  height: 60px;
+`
+
 const Searchbar = () => {
   const [text, setText] = useState('')
   const textHandler = (e) => setText(e.target.value)
@@ -122,14 +121,16 @@ const Searchbar = () => {
 
   return (
     <>
-      <GlobalStyle />
-      <Search>
-        <Icon />
-        <Input>
-          <input type='text' placeholder='필요한 정보를 검색해 주세요' value={text} onChange={textHandler} />
-        </Input>
-        <Clear onClick={resetHandler} />
-      </Search>
+      <Container>
+        <Image src={gaja} alt='logo' />
+        <Search>
+          <Icon />
+          <Input>
+            <input type='text' placeholder='필요한 정보를 검색해 주세요' value={text} onChange={textHandler} />
+          </Input>
+          <Clear onClick={resetHandler} />
+        </Search>
+      </Container>
     </>
   )
 }
