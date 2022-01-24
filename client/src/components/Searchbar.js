@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
@@ -116,22 +116,22 @@ export const Clear = styled.span`
 `
 
 const Searchbar = () => {
-  const [text, setText] = useState('');
-  const textHandler = (e) => setText(e.target.value);
-  const resetHandler = () => setText('');
+  const [text, setText] = useState('')
+  const textHandler = (e) => setText(e.target.value)
+  const resetHandler = () => setText('')
 
   return (
     <>
-    <GlobalStyle />
-    <Search>
-      <Icon />
-      <Input>
-       <input type={'text'} placeholder={'필요한 정보를 검색해 주세요'} value={text} onChange={textHandler}/>
-      </Input>
-      <Clear onClick={resetHandler}/>
-    </Search>
+      <GlobalStyle />
+      <Search>
+        <Icon />
+        <Input>
+          <input type='text' placeholder='필요한 정보를 검색해 주세요' value={text} onChange={textHandler} />
+        </Input>
+        <Clear onClick={resetHandler} />
+      </Search>
     </>
   )
 }
 
-export default Searchbar;
+export default Searchbar

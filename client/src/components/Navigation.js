@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
@@ -35,22 +35,21 @@ export const Container = styled.div`
       transition: 0.3s;
 
       &:hover {
-        transform: scale(1.1)
+        transform: scale(1.1);
       }
   }
 `
 
 const Navigation = () => {
-
-    return (
-        <>
-          <GlobalStyle />
-          <Container>
-            <div>로그인</div>
-            <div>회원가입</div>
-          </Container>
-        </>
-    )
+  return (
+    <>
+      <GlobalStyle />
+      <Container>
+        <div>로그인</div>
+        <div>회원가입</div>
+      </Container>
+    </>
+  )
 }
 
 export default Navigation
