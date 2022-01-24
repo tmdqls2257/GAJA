@@ -8,7 +8,7 @@ const {
 
 module.exports = (req, res) => {
   const { email, password } = req.body
-  console.log(email, password)
+  if (!email || !password) { return res.status(422).send({ data: null, message: '모든 항목을 채워주세요' }) }
   Users.findOne({
     where: {
       email

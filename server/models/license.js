@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   License.init(
     {
       name: DataTypes.STRING,
-      userId: DataTypes.INTEGER,
-      expiration: DataTypes.STRING
+      expiration: DataTypes.STRING,
+      userId: DataTypes.INTEGER
     },
     {
       sequelize,

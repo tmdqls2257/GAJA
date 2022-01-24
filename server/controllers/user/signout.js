@@ -14,9 +14,9 @@ module.exports = async (req, res) => {
       }
     }).then(data => {
       if (!data) {
-        return res.status(200).json({ message: '회원탈퇴 성공했습니다' })
-      } else {
         return res.status(400).json({ message: '회원탈퇴 실패하였습니다.' })
+      } else {
+        return res.status(200).json({ message: '회원탈퇴 성공했습니다' })
       }
     }).catch(err => {
       console.log(err)

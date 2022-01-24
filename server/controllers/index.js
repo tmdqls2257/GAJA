@@ -5,5 +5,8 @@ module.exports = {
   signout: require('./user/signout'),
   edit: require('./mypage/edit'),
   internship: require('./page/internship'),
-  scholarship: require('./page/scholarship')
+  scholarship: require('./page/scholarship'),
+  mypage: require('./mypage/mypage'),
+  memo: require('./mypage/memo'),
+  memoDelete: require('./mypage/memoDelete')
 }

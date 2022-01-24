@@ -5,5 +5,5 @@ const controller = require('../controllers')
 router.post('/login', controller.login)
 router.post('/logout', controller.logout)
 router.post('/signin', controller.signin)
-router.delete('/signout', controller.signout)
+router.post('/signout', controller.signout)
 module.exports = router
