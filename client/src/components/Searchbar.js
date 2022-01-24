@@ -6,6 +6,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items:center;
+  margin: 20px;
 `
 
 export const Search = styled.div`
@@ -120,18 +121,16 @@ const Searchbar = () => {
   const resetHandler = () => setText('')
 
   return (
-    <>
-      <Container>
-        <Image src={gaja} alt='logo' />
-        <Search>
-          <Icon />
-          <Input>
-            <input type='text' placeholder='필요한 정보를 검색해 주세요' value={text} onChange={textHandler} />
-          </Input>
-          <Clear onClick={resetHandler} />
-        </Search>
-      </Container>
-    </>
+    <Container>
+      <Image src={gaja} alt='logo' />
+      <Search>
+        <Icon />
+        <Input>
+          <input type='text' placeholder='필요한 정보를 검색해 주세요' value={text} onChange={textHandler} />
+        </Input>
+        <Clear onClick={resetHandler} />
+      </Search>
+    </Container>
   )
 }
 
