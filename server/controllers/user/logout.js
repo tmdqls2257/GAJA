@@ -1,4 +1,4 @@
-const { isAuthorized, checkRefeshToken, generateAccessToken, sendAccessToken } = require('../tokenFunctions');
+const { isAuthorized, checkRefeshToken, generateAccessToken, resendAccessToken } = require('../tokenFunctions');
 const { User } = require('../../models');
 
 module.exports = (req, res) => {
@@ -11,7 +11,7 @@ module.exports = (req, res) => {
             .then((data) => {
                 delete data.dataValues.password
                 const accessToken = generateAccessToken(data.dataValues)
-                sendAccessToken(res, accessToken)
+                resendAccessToken(res, accessToken, data)
             })
             .catch((err) => {
                 console.log(err);
@@ -19,6 +19,7 @@ module.exports = (req, res) => {
     }else{
         return res.send({data: null, message: '모든 토큰 만료 고객센터에 문의해주세요'})
     }
+  }else{
+    return res.cookie('refreshToken', '', {maxAge: 1}).send({data:null, message:'로그아웃'})
   }
-  return res.cookie('refreshToken', '', {maxAge: 1}).send({data:null, message:'로그아웃'})
 };
