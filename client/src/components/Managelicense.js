@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import License from './License'
 
@@ -13,6 +13,15 @@ export const ManageLicense = styled.div`
 `
 
 function Managelicense() {
+
+  const handleLicense = (e) => {
+
+  }
+
+  const handleExpiration = (e) => {
+    console.log(e.target.value)
+  }
+
   return (
     <>
       <ManageLicense>
@@ -20,12 +29,26 @@ function Managelicense() {
         <License />
         <h3 id='current'><span className='check'>&#10003;</span> 자격증 입력</h3>
         <div>
-          <span className='new_license'>자격증 종류</span>
-          <input className='input_new_license' placeholder=' 자격증을 입력해주세요.' />
+          <label
+            htmlFor='new_license_name'
+            className='new_license'>
+            1) 자격증 종류
+          </label>
+          <input
+            id='new_license_name'
+            className='input_new_license'
+            placeholder=' 자격증 종류를 입력해주세요.'
+            onChange={(e) => handleLicense(e)} />
         </div>
         <div>
-          <span className='new_license'>자격증 만료 기간</span>
-          <input className='input_new_license' placeholder=' 자격증의 만료 기간을 입력해주세요.' />
+          <label className='new_license'>
+            2) 자격증 만료 기간
+          </label>
+          <input
+            type='date'
+            className='input_new_license'
+            placeholder=' 자격증의 만료 기간을 입력해주세요.'
+            onChange={(e) => handleExpiration(e)} />
         </div>
         <button className='license_add_button'>추가하기</button>
       </ManageLicense>

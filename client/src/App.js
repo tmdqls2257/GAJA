@@ -5,8 +5,8 @@ import Mypage from './components/Mypage'
 function App() {
   return (
     <>
-      <Mypage />
-      {/* <Begin /> */}
+      {/* <Mypage /> */}
+      <Begin />
     </>
   )
 }

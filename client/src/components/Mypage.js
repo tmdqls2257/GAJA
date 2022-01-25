@@ -40,6 +40,11 @@ export const List = styled.div`
     color: #2573ef;
     font-weight: bold;
   }
+
+  .focused_signout {
+    color: #FF2C48;
+    font-weight: bold;
+  }
 `
 
 function Mypage() {
@@ -48,7 +53,6 @@ function Mypage() {
   const list = [<Myinfo />, <Managelicense />, <Changepassword />, <Signout />]
 
   const selectMenuHandler = (index) => {
-    console.log(index)
     setcurrentTab(index);
   };
 
@@ -77,7 +81,7 @@ function Mypage() {
               </li>
               <li key={3}
                 onClick={() => selectMenuHandler(3)}
-                className={currentTab === 3 ? 'focused' : 'submenu'}>
+                className={currentTab === 3 ? 'focused_signout' : 'submenu'}>
                 회원탈퇴
               </li>
             </ul>
