@@ -39,7 +39,6 @@ export const Container = styled.div`
       font-size: 20px; 
       margin-top: 20px;
       padding: 10px 5px;
-
   }
 `
 export const Button = styled.div`
