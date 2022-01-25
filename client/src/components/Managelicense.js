@@ -16,8 +16,7 @@ export const Add = styled.div`
   flex-direction: column;
 `
 
-function Managelicense() {
-
+function Managelicense () {
   const [license, setLicense] = useState('')
   const [expiration, setExpiration] = useState('')
 
@@ -57,14 +56,16 @@ function Managelicense() {
           <div>
             <label
               htmlFor='new_license_name'
-              className='new_license'>
+              className='new_license'
+            >
               1) 자격증 종류
             </label>
             <input
               id='new_license_name'
               className='new_license_name'
               placeholder=' 자격증 종류를 입력해주세요.'
-              onChange={(e) => handleLicense(e)} />
+              onChange={(e) => handleLicense(e)}
+            />
           </div>
           <div>
             <label className='new_license'>
@@ -74,12 +75,14 @@ function Managelicense() {
               type='date'
               className='new_license_expiration'
               placeholder=' 자격증의 만료 기간을 입력해주세요.'
-              onChange={(e) => handleExpiration(e)} />
+              onChange={(e) => handleExpiration(e)}
+            />
           </div>
         </Add>
         <button
           className='license_add_button'
-          onClick={() => handleSubmit()}>
+          onClick={() => handleSubmit()}
+        >
           추가하기
         </button>
       </ManageLicense>

@@ -31,7 +31,7 @@ export const Profile = styled.div`
   `
 
 // props로 이름이랑 이메일 받아오면 NAME: {name}, E-MAIL: {email} 형식으로 바꾼다.
-function Myinfo() {
+function Myinfo () {
   return (
     <>
       <MyInfo>

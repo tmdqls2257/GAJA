@@ -5,10 +5,9 @@ import styled from 'styled-components'
 
 // `
 
-function Signout() {
-
+function Signout () {
   const handleSignout = () => {
-    //회원탈퇴 함수를 작성한다.
+    // 회원탈퇴 함수를 작성한다.
   }
 
   return (
@@ -16,7 +15,8 @@ function Signout() {
       <h1 className='title'>회원탈퇴 ＞</h1>
       <button
         className='signout_button'
-        onClick={() => handleSignout()}>
+        onClick={() => handleSignout()}
+      >
         회원탈퇴
       </button>
     </>

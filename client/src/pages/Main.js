@@ -6,7 +6,7 @@ import Internship from '../components/Internship'
 import Scholarship from '../components/Scholarship'
 import Mypage from '../components/Mypage'
 
-function Main() {
+function Main () {
   return (
     <>
       <Header />

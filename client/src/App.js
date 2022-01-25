@@ -5,17 +5,17 @@ import Begin from './pages/Begin'
 import Main from './pages/Main'
 import Mypage from './components/Mypage'
 
-function App() {
+function App () {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Begin />} />
-        <Route path="main/" element={<Main />} />
-        <Route path="/login/" element={<LoginSignup />} />
-        <Route path="mypage/" element={<Mypage />} />
+        <Route path='/' element={<Begin />} />
+        <Route path='main/' element={<Main />} />
+        <Route path='/login/' element={<LoginSignup />} />
+        <Route path='mypage/' element={<Mypage />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
 export default App

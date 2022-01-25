@@ -20,7 +20,7 @@ export const List = styled.div`
 `
 
 // props 로 License 리스트를 받아오면 map 메소드를 이용하여 나열하도록 한다.
-function License() {
+function License () {
   return (
     <>
       <Current>
