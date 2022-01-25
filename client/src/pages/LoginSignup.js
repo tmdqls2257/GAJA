@@ -139,40 +139,40 @@ const LoginSignup = ({ isSignup }) => {
     }
   }
 
-   return (
-     <>
-    <Header />
-    <Box>
-      <Container>
-        <img src={gaja} alt='img' />
-        <div>
-          <label htmlFor='email'>아이디</label><br />
-          <input id='email' type='email' placeholder='이메일 형식으로 입력해 주세요.' value={ID} onChange={IDHandler} onBlur={blur} />
-          <HiddenMessege type='email'>{warnID}</HiddenMessege>
-        </div>
-        <div>
-          <label htmlFor='password'>비밀번호</label><br />
-          <input id='password' type='password' placeholder='비밀번호는 4자 이상 20자 이하입니다.' value={password} onChange={passwordHandler} onBlur={blur} />
-          <HiddenMessege type='password'>{warnPassword}</HiddenMessege>
-        </div>
+  return (
+    <>
+      <Header />
+      <Box>
+        <Container>
+          <img src={gaja} alt='img' />
+          <div>
+            <label htmlFor='email'>아이디</label><br />
+            <input id='email' type='email' placeholder='이메일 형식으로 입력해 주세요.' value={ID} onChange={IDHandler} onBlur={blur} />
+            <HiddenMessege type='email'>{warnID}</HiddenMessege>
+          </div>
+          <div>
+            <label htmlFor='password'>비밀번호</label><br />
+            <input id='password' type='password' placeholder='비밀번호는 4자 이상 20자 이하입니다.' value={password} onChange={passwordHandler} onBlur={blur} />
+            <HiddenMessege type='password'>{warnPassword}</HiddenMessege>
+          </div>
 
-        {isSignup
-          ? <>
-            <div>
-              <label htmlFor='password-reconfirm'>비밀번호 확인</label><br />
-              <input id='password-reconfirm' type='password' value={repassword} onChange={repasswordHandler} onBlur={blur} />
-              <HiddenMessege>{warnRepassword}</HiddenMessege>
-            </div>
-            <div>
-              <label htmlFor='name'>이름</label><br />
-              <input id='name' type='text' placeholder='이름은 2자 이상 4자 이하의 한글입니다.' value={name} onChange={nameHandler} onBlur={blur} />
-              <HiddenMessege>{warnName}</HiddenMessege>
-            </div>
-          </>
-          : null}
-        <Button>{isSignup ? '회원가입' : '로그인'}</Button>
-      </Container>
-    </Box>
+          {isSignup
+            ? <>
+              <div>
+                <label htmlFor='password-reconfirm'>비밀번호 확인</label><br />
+                <input id='password-reconfirm' type='password' value={repassword} onChange={repasswordHandler} onBlur={blur} />
+                <HiddenMessege>{warnRepassword}</HiddenMessege>
+              </div>
+              <div>
+                <label htmlFor='name'>이름</label><br />
+                <input id='name' type='text' placeholder='이름은 2자 이상 4자 이하의 한글입니다.' value={name} onChange={nameHandler} onBlur={blur} />
+                <HiddenMessege>{warnName}</HiddenMessege>
+              </div>
+            </>
+            : null}
+          <Button>{isSignup ? '회원가입' : '로그인'}</Button>
+        </Container>
+      </Box>
     </>
   )
 }
