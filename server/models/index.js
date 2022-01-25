@@ -1,44 +1,37 @@
-require('dotenv').config()
+'use strict'
+
 const fs = require('fs')
-const https = require('https')
-const cors = require('cors')
-const cookieParser = require('cookie-parser')
-const express = require('express')
-const app = express()
+const path = require('path')
+const Sequelize = require('sequelize')
+const basename = path.basename(__filename)
+const env = process.env.NODE_ENV || 'development'
+const config = require(__dirname + '/../config/config.js')[env]
+const db = {}
 
-const userRoute = require('./routes/user.js')
-const pageRoute = require('./routes/page.js')
-const mypageRoute = require('./routes/mypage.js')
-
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
-app.use(
-  cors({
-    origin: ['http://localhost:3000'],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-  })
-)
-app.use(cookieParser())
-app.use('/user', userRoute) // 회원가입,회원탈퇴,로그인,로그아웃
-app.use('/mypage', mypageRoute) // 마이페이지,개인정보수정,자격증 등록 및 삭제
-app.use('/page', pageRoute) // 시작페이지,인턴십,장학금
-
-// app.get("/accesstokenrequest", controllers.accessTokenRequest);
-// app.get("/refreshtokenrequest", controllers.refreshTokenRequest);
-
-const HTTPS_PORT = process.env.HTTPS_PORT || 4000
-
-let server
-if (fs.existsSync('./key.pem') && fs.existsSync('./cert.pem')) {
-  const privateKey = fs.readFileSync(__dirname + '/key.pem', 'utf8')
-  const certificate = fs.readFileSync(__dirname + '/cert.pem', 'utf8')
-  const credentials = { key: privateKey, cert: certificate }
-
-  server = https.createServer(credentials, app)
-  server.listen(HTTPS_PORT, () => console.log('server runnning'))
+let sequelize
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config)
 } else {
-  server = app.listen(HTTPS_PORT)
+  sequelize = new Sequelize(config.database, config.username, config.password, config)
 }
-module.exports = server
 
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js')
+  })
+  .forEach(file => {
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes)
+    db[model.name] = model
+  })
+
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db)
+  }
+})
+
+db.sequelize = sequelize
+db.Sequelize = Sequelize
+
+module.exports = db

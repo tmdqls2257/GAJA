@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 const express = require('express')
 const app = express()
 
-const userRoute = require('./routes/user.js')
+const userRoute = require('')
 const pageRoute = require('./routes/page.js')
 const mypageRoute = require('./routes/mypage.js')
 
