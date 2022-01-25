@@ -40,10 +40,10 @@ const Navigation = () => {
   return (
     <>
       <Container>
-        <StyledLink to='login/'>
+        <StyledLink to='/login'>
           <div>로그인</div>
         </StyledLink>
-        <StyledLink to='login/'>
+        <StyledLink to='/login'>
           <div>회원가입</div>
         </StyledLink>
         <StyledLink to='/'>
