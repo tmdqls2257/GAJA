@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import License from './License'
@@ -14,12 +15,32 @@ export const ManageLicense = styled.div`
 
 function Managelicense() {
 
-  const handleLicense = (e) => {
+  const [license, setLicense] = useState('')
+  const [expiration, setExpiration] = useState('')
 
+  const handleLicense = (e) => {
+    setLicense(e.target.value)
   }
 
   const handleExpiration = (e) => {
-    console.log(e.target.value)
+    setExpiration(e.target.value)
+  }
+
+  const handleSubmit = () => {
+    axios
+      .post('url',
+        {
+          name: license,
+          expiration: expiration
+        },
+        { 'Content-Type': 'application/json', withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   return (
@@ -36,7 +57,7 @@ function Managelicense() {
           </label>
           <input
             id='new_license_name'
-            className='input_new_license'
+            className='new_license_name'
             placeholder=' 자격증 종류를 입력해주세요.'
             onChange={(e) => handleLicense(e)} />
         </div>
@@ -46,11 +67,15 @@ function Managelicense() {
           </label>
           <input
             type='date'
-            className='input_new_license'
+            className='new_license_expiration'
             placeholder=' 자격증의 만료 기간을 입력해주세요.'
             onChange={(e) => handleExpiration(e)} />
         </div>
-        <button className='license_add_button'>추가하기</button>
+        <button
+          className='license_add_button'
+          onClick={() => handleSubmit()}>
+          추가하기
+        </button>
       </ManageLicense>
     </>
   )
