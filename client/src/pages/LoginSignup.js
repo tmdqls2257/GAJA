@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import gaja from '../images/logo.png'
+import Header from '../components/Header'
 
 export const Box = styled.div`
   border-top : 2px solid #D3D3D3;
@@ -138,7 +139,9 @@ const LoginSignup = ({ isSignup }) => {
     }
   }
 
-  return (
+   return (
+     <>
+    <Header />
     <Box>
       <Container>
         <img src={gaja} alt='img' />
@@ -170,6 +173,7 @@ const LoginSignup = ({ isSignup }) => {
         <Button>{isSignup ? '회원가입' : '로그인'}</Button>
       </Container>
     </Box>
+    </>
   )
 }
 
