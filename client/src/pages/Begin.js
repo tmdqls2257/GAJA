@@ -5,11 +5,12 @@ import background from '../images/begin_background.jpeg'
 
 export const Background = styled.div`
   display: flex;
-  margin: auto;
-  margin-top: -10%;
-  margin-right: -80%;
-  width: 100%;
-  height: 100%;
+  /* margin: auto; */
+  margin-top: -20rem;
+  margin-right: -80rem;
+  margin-bottom: -100rem;
+  width: 78rem;
+  height: 78rem;
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -19,23 +20,23 @@ export const Background = styled.div`
 `
 
 export const Logo = styled.div`
-  display: flex;
+  display: grid;
   margin: auto;
-  margin-top: 4%;
+  margin-top: 3rem;
   width: 100%;
   height: 100%;
-  align-items: center;
-  justify-content: center;
+  place-items: center;
+  z-index: 100;
 `
 
 export const Introduce = styled.div`
   display: flex;
   background-color: rgb(255, 255, 255, 0.2);
-  width: 62%;
-  height: 100%;
-  margin: 4% auto 4% auto;
+  width: 55rem;
+  height: 15rem;
+  margin: 3rem auto 3rem auto;
   align-items: center;
-  font-size: 17px;
+  font-size: 1rem;
   text-align: center;
   line-height: 40px;
   justify-content: center;
@@ -43,19 +44,19 @@ export const Introduce = styled.div`
 `
 
 export const Start = styled.div`
+  display: flex;
   color: white;
   background-color: #263A8D;
   font-size: 14px;
-  display: flex;
   margin: auto;
-  width: 12%;
-  height: 100%;
+  width: 12rem;
+  height: 5rem;
   align-items: center;
   justify-content: center;
   border-radius: 60px;
 `
 
-function Begin () {
+function Begin() {
   return (
     <>
       <Background>
@@ -64,7 +65,7 @@ function Begin () {
           className='background'
           alt='Background'
           width='130%'
-          // height='130%'
+        // height='130%'
         />
       </Background>
       <Logo>

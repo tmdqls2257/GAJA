@@ -1,15 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
-import './License.css'
 
 export const Current = styled.div`
+  width: 70%;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  margin-top: -1rem;
 `
 
 export const List = styled.div`
   display: flex;
+  margin: auto;
   margin-top: -20px;
   align-items: flex-start;
   justify-content: flex-start;

@@ -1,8 +1,77 @@
 .profile {
   text-align: center;
-  margin-right: 30px;
+  margin-right: 50px;
 }
 
 #greet {
   font-size: 25px;
+  margin: 10px auto 20px auto;
+}
+
+.title {
+  margin: 0px;
+  margin-bottom: 20px;
+  width: 300px;
+}
+
+.check {
+  font-size: 40px;
+  margin-right: 5px;
+}
+
+#current {
+  font-size: 20px;
+}
+
+.signout_button {
+  color: #2573ef;
+  background-color: white;
+  border-color: #2573ef;
+  font-weight: bold;
+  border-width: 4px;
+  font-size: 20px;
+  padding: 10px 30px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition-duration: 0.2
+}
+
+.signout_button:hover {
+  color: #FF2C48;
+  border-color: #FF2C48;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px 30px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+
+.password_box {
+  width: 190px;
+  height: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.password_change_button {
+  /* display: flex; */
+  padding: 9px 20px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.input_new_license {
+  width: 300px;
+  height: 20px;
+  margin: auto;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  float: right;
+}
+
+.license_add_button {
+  padding: 9px 20px;
+  margin: auto;
+  margin-top: 10px;
 }

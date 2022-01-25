@@ -9,24 +9,25 @@ export const MyInfo = styled.div`
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  margin-left: 50px;
+  /* margin-top: 5rem; */
 `
 
 export const Information = styled.div`
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: flex-start;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 `
 
 export const Profile = styled.div`
   display: flex;
-  margin: auto;
-  margin-top: -5px;
-  width: 100%;
+  width: 40%;
   height: 100%;
-  align-items: center;
-  /* justify-content: center; */
-  line-height: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  line-height: 25px;
   `
 
 // props로 이름이랑 이메일 받아오면 NAME: {name}, E-MAIL: {email} 형식으로 바꾼다.
@@ -34,15 +35,14 @@ function Myinfo() {
   return (
     <>
       <MyInfo>
+        <h1 className='title'>내 정보 ＞</h1>
         <Information>
-          {/* <ProfileImage> */}
           <img
             src={profile}
             className='profile'
             alt='Profile Image'
             width='17%'
           />
-          {/* </ProfileImage> */}
           <Profile>
             <div>
               <h2 id='greet'>

@@ -2,10 +2,11 @@ import React from 'react'
 import Begin from './pages/Begin'
 import Mypage from './components/Mypage'
 
-function App () {
+function App() {
   return (
     <>
       <Mypage />
+      {/* <Begin /> */}
     </>
   )
 }

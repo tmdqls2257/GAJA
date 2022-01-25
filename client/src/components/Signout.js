@@ -1,18 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
-// export const MyInfo = styled.div`
-//   display: flex;
-//   align-items: flex-start;
-//   justify-content: center;
-//   flex-direction: column;
-//   margin-left: 50px;
+// export const Button = styled.div`
+
 // `
 
 function Signout() {
   return (
     <>
-      <h1>Signout</h1>
+      <h1 className='title'>회원탈퇴 ＞</h1>
+      <button className='signout_button'>회원탈퇴</button>
     </>
   )
 }
