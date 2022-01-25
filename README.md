@@ -1,11 +1,10 @@
 ## **클라이언트에 설치한 파일**
 
 ```jsx
-// 실시간 채팅 사용시
-npm i socket.io-client
-
-npm install styled-components
-npm install react-router-dom
+npm i axios
+npm i react-redux
+npm i react-router-dom
+npm i styled-components
 ```
 
 ## **서버에 설치한 파일**
@@ -13,10 +12,10 @@ npm install react-router-dom
 ```jsx
 npm i nodemon
 npm i dotenv
-npm i cors morgan helmet express express-async-errors
+npm i cors
+npm i express
 npm i jsonwebtoken
-npm i socket.io
 npm i sequelize
-npm i mongodb
+npm i sequelize-cli
 npm i cookie-parser
 ```
