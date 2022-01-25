@@ -37,7 +37,9 @@ const Navigation = () => {
         <Link to='login/'>
           <div>회원가입</div>
         </Link>
-        <div>GAJA 소개</div>
+        <Link to='/'>
+          <div>GAJA 소개</div>
+        </Link>
       </Container>
     </>
   )

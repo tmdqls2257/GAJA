@@ -6,6 +6,10 @@ import Changepassword from './Changepassword'
 import Managelicense from './Managelicense'
 import Signout from './Signout';
 
+export const Container = styled.div`
+  max-width: 100vw;
+  min-width: 1190px;
+`
 
 export const MyPage = styled.div`
   display: flex;
@@ -19,15 +23,24 @@ export const Sidebar = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  margin-left: 1rem;
+  margin-left: 20rem;
   margin-right: 3rem;
   /* background-color: skyblue; */
 `
 
+export const Desc = styled.div`
+  margin-left: 1rem;
+  margin-top: 5rem;
+  margin-bottom: 10rem;
+  min-height: 450px;
+`
+
+
 export const List = styled.div`
+  /* position: absolute; */
+  margin-top: 15px;
+  margin-left: 30px;
   display: flex;
-  margin-top: -15px;
-  margin-right: 3rem;
   align-items: flex-start;
   justify-content: center;
   line-height: 40px;
@@ -58,39 +71,43 @@ function Mypage() {
 
   return (
     <>
-      <MyPage>
+      <Container>
+        <MyPage>
 
-        <Sidebar>
-          <h2>MENU</h2>
-          <List>
-            <ul>
-              <li key={0}
-                onClick={() => selectMenuHandler(0)}
-                className={currentTab === 0 ? 'focused' : 'submenu'}>
-                내 정보
-              </li>
-              <li key={1}
-                onClick={() => selectMenuHandler(1)}
-                className={currentTab === 1 ? 'focused' : 'submenu'}>
-                자격증 관리
-              </li>
-              <li key={2}
-                onClick={() => selectMenuHandler(2)}
-                className={currentTab === 2 ? 'focused' : 'submenu'}>
-                비밀번호 변경
-              </li>
-              <li key={3}
-                onClick={() => selectMenuHandler(3)}
-                className={currentTab === 3 ? 'focused_signout' : 'submenu'}>
-                회원탈퇴
-              </li>
-            </ul>
-          </List>
-        </Sidebar>
+          <Sidebar>
+            <h2 className='mypage_menu'>MENU</h2>
+            <List>
+              <ul>
+                <li key={0}
+                  onClick={() => selectMenuHandler(0)}
+                  className={currentTab === 0 ? 'focused' : 'submenu'}>
+                  내 정보
+                </li>
+                <li key={1}
+                  onClick={() => selectMenuHandler(1)}
+                  className={currentTab === 1 ? 'focused' : 'submenu'}>
+                  자격증 관리
+                </li>
+                <li key={2}
+                  onClick={() => selectMenuHandler(2)}
+                  className={currentTab === 2 ? 'focused' : 'submenu'}>
+                  비밀번호 변경
+                </li>
+                <li key={3}
+                  onClick={() => selectMenuHandler(3)}
+                  className={currentTab === 3 ? 'focused_signout' : 'submenu'}>
+                  회원탈퇴
+                </li>
+              </ul>
+            </List>
+          </Sidebar>
 
-        <p>{list[currentTab]}</p>
+          <Desc>
+            <p>{list[currentTab]}</p>
+          </Desc>
 
-      </MyPage>
+        </MyPage>
+      </Container>
     </>
   )
 }

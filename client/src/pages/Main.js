@@ -2,7 +2,8 @@ import React from 'react'
 import Header from '../components/Header'
 import Menu from '../components/Menu'
 import Footer from '../components/Footer'
-import InternshipScholarship from '../components/InternshipScholarship'
+import Internship from '../components/Internship'
+import Scholarship from '../components/Scholarship'
 import Mypage from '../components/Mypage'
 
 function Main() {
@@ -10,7 +11,6 @@ function Main() {
     <>
       <Header />
       <Menu />
-      <InternshipScholarship />
       <Footer />
     </>
   )
