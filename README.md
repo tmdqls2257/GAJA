@@ -3,7 +3,6 @@
 ```jsx
 npm i axios
 npm i react-redux
-npm i react-router
 npm i react-router-dom
 npm i styled-components
 ```
