@@ -1,7 +1,5 @@
 const url = 'https://oapi.saramin.co.kr/job-search?'
-const request = require('request')
 const axios = require('axios')
-const jobType = '11'
 const requestUrl = `${url}access-key=${process.env.INTETNSHIP_ACCESSKEY}&job_type=11`
 
 
