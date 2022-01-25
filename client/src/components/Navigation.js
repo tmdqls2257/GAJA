@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -30,8 +31,12 @@ const Navigation = () => {
   return (
     <>
       <Container>
-        <div>로그인</div>
-        <div>회원가입</div>
+        <Link to='login/'>
+          <div>로그인</div>
+        </Link>
+        <Link to='login/'>
+          <div>회원가입</div>
+        </Link>
         <div>GAJA 소개</div>
       </Container>
     </>

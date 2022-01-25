@@ -89,7 +89,7 @@ function Begin() {
             <br />
           </div>
         </Introduce>
-        <Link to='mypage/'>
+        <Link to='main/'>
           <Start>
             <h1>시작하기</h1>
           </Start>

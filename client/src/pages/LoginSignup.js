@@ -66,7 +66,7 @@ export const HiddenMessege = styled.div`
   color: red;
 `
 
-const Login = ({ isSignup }) => {
+const LoginSignup = ({ isSignup }) => {
   const isKorean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/
   const isEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
   const isPerfectKorean = /^[\가-\힣+]*$/
@@ -173,4 +173,4 @@ const Login = ({ isSignup }) => {
   )
 }
 
-export default Login
+export default LoginSignup
