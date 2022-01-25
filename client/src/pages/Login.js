@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import gaja from '../logo.png'
+import gaja from '../images/logo.png'
 
 export const Box = styled.div`
   border-top : 2px solid #D3D3D3;

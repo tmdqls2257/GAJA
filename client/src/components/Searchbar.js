@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import gaja from '../logo.png'
+import gaja from '../images/logo.png'
 
 export const Container = styled.div`
   display: flex;
