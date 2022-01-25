@@ -58,7 +58,7 @@ export const List = styled.div`
   }
 `
 
-function Mypage () {
+function Mypage() {
   const [currentTab, setcurrentTab] = useState(0)
   const list = [<Myinfo />, <Managelicense />, <Changepassword />, <Signout />]
 
