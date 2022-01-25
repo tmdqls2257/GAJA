@@ -9,7 +9,7 @@ export const Ul = styled.ul`
   padding: 0;
   max-width: 100vw;
   min-width: 1190px;
-  height: 150px;
+  height: 200px;
   list-style: none;
   display: flex;
   justify-content: center;
