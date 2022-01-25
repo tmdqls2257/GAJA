@@ -7,8 +7,9 @@ export const Container = styled.div`
   
   display: flex;
   justify-content: space-between;
+  
 
-  > div {
+  div {
       width: 100px;
       height: 30px;
       border: 3px solid #287dfc;
@@ -26,17 +27,25 @@ export const Container = styled.div`
       }
   }
 `
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: black;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
 
 const Navigation = () => {
   return (
     <>
       <Container>
-        <Link to='login/'>
+        <StyledLink to='login/'>
           <div>로그인</div>
-        </Link>
-        <Link to='login/'>
+        </StyledLink>
+        <StyledLink to='login/'>
           <div>회원가입</div>
-        </Link>
+        </StyledLink>
         <div>GAJA 소개</div>
       </Container>
     </>

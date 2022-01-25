@@ -65,6 +65,15 @@ export const Start = styled.div`
     transition-duration: 0.05s;
   }
 `
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: white;
+
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
 
 function Begin() {
   return (
@@ -89,11 +98,11 @@ function Begin() {
             <br />
           </div>
         </Introduce>
-        <Link to='main/'>
+        <StyledLink to='main/'>
           <Start>
             <h1>시작하기</h1>
           </Start>
-        </Link>
+        </StyledLink>
       </Container>
     </>
   )
