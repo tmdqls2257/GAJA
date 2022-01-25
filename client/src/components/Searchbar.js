@@ -111,8 +111,9 @@ export const Clear = styled.span`
 
 export const Image = styled.img`
   margin-right: 2rem;
-  width: 60px;
+  width: auto;
   height: 60px;
+  cursor: pointer;
 `
 
 const Searchbar = () => {
