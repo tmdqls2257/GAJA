@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import gaja from '../images/logo.png'
 import background from '../images/begin_background.jpeg'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   max-width: 100vw;
@@ -88,9 +89,11 @@ function Begin() {
             <br />
           </div>
         </Introduce>
-        <Start>
-          <h1>시작하기</h1>
-        </Start>
+        <Link to='mypage/'>
+          <Start>
+            <h1>시작하기</h1>
+          </Start>
+        </Link>
       </Container>
     </>
   )
