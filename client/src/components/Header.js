@@ -15,6 +15,8 @@ export const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 100vw;
+  min-width: 1190px;
 `
 export const Container = styled.div`
   width: 75%;
