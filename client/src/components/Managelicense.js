@@ -16,12 +16,12 @@ export const Add = styled.div`
   flex-direction: column;
 `
 
-function Managelicense () {
-  const [license, setLicense] = useState('')
+function Managelicense() {
+  const [licenseName, setLicenseName] = useState('')
   const [expiration, setExpiration] = useState('')
 
   const handleLicense = (e) => {
-    setLicense(e.target.value)
+    setLicenseName(e.target.value)
   }
 
   const handleExpiration = (e) => {
@@ -30,9 +30,9 @@ function Managelicense () {
 
   const handleSubmit = () => {
     axios
-      .post('url',
+      .post('http://localhost:4000/mypage/memo',
         {
-          name: license,
+          name: licenseName,
           expiration: expiration
         },
         { 'Content-Type': 'application/json', withCredentials: true }
