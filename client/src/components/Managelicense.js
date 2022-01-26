@@ -16,7 +16,7 @@ export const Add = styled.div`
   flex-direction: column;
 `
 
-function Managelicense() {
+function Managelicense () {
   const [licenseName, setLicenseName] = useState('')
   const [expiration, setExpiration] = useState('')
 

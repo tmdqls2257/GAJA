@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import gaja from '../images/logo.png'
 import Header from '../components/Header'
 
+import Modal from '../components/Modal'
+
 export const Box = styled.div`
   border-top : 2px solid #D3D3D3;
   display: flex;
@@ -67,6 +69,8 @@ export const HiddenMessege = styled.div`
 `
 
 const LoginSignup = ({ isSignup }) => {
+  const [openModal, setOpenModal] = useState(false)
+
   const isKorean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/
   const isEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
   const isPerfectKorean = /^[\가-\힣+]*$/
@@ -85,6 +89,13 @@ const LoginSignup = ({ isSignup }) => {
   const passwordHandler = (e) => setPassword(e.target.value)
   const repasswordHandler = (e) => setRepassword(e.target.value)
   const nameHandler = (e) => setName(e.target.value)
+
+  const modalHandler = () => {
+    if (!isSignup) {
+      return
+    }
+    setOpenModal(true)
+  }
 
   const blur = (e) => {
     const value = e.target.value
@@ -140,6 +151,7 @@ const LoginSignup = ({ isSignup }) => {
 
   return (
     <>
+      {openModal ? <Modal setOpenModal={setOpenModal} isSignup={isSignup} /> : null}
       <Header />
       <Box>
         <Container>
@@ -169,7 +181,7 @@ const LoginSignup = ({ isSignup }) => {
               </div>
             </>
             : null}
-          <Button>{isSignup ? '회원가입' : '로그인'}</Button>
+          <Button onClick={modalHandler}>{isSignup ? '회원가입' : '로그인'}</Button>
         </Container>
       </Box>
     </>
