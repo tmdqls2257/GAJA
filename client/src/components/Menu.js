@@ -47,13 +47,12 @@ export const Ul = styled.ul`
     }
 `
 
-const Menu = () => {
+const Menu = ({ accessToken, isLogin }) => {
   const [currentTab, setcurrentTab] = useState(0)
-  const list = [<Internship />, <Scholarship />, <Mypage />]
+  const list = [<Internship />, <Scholarship />, <Mypage accessToken={accessToken} isLogin={isLogin} />]
 
   const selectMenuHandler = (index) => {
     setcurrentTab(index)
-    console.log(index)
   }
 
   return (

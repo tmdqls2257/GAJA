@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import gaja from '../images/logo.png'
 
@@ -123,7 +124,9 @@ const Searchbar = () => {
 
   return (
     <Container>
-      <Image src={gaja} alt='logo' />
+      <Link to='/'>
+        <Image src={gaja} alt='logo' />
+      </Link>
       <Search>
         <Icon />
         <Input>
