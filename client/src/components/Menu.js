@@ -22,9 +22,10 @@ export const Ul = styled.ul`
     height: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 2rem;
+    margin-top: 5rem;
     margin-right: 7px;
     margin-left: 7px;
+    margin-bottom: 5rem;
     display: flex;
     align-items:center;
     transition: 0.4s;
@@ -51,7 +52,9 @@ export const Ul = styled.ul`
 `
 
 const Menu = ({ accessToken, isLogin }) => {
+
   const [currentTab, setcurrentTab] = useState(0)
+  //선택된 탭에 따라서 하단에 렌더링 되는 컴포넌트가 달라진다.
   const list = [<Internship />, <Scholarship />, <Mypage accessToken={accessToken} isLogin={isLogin} />]
 
   const selectMenuHandler = (index) => {
@@ -62,6 +65,11 @@ const Menu = ({ accessToken, isLogin }) => {
     <>
       <Ul>
         <li
+          //JS 원리: 각 메뉴는 인턴십(0), 장학금(1), 마이페이지(2)의 index 값을 가지고 있으며,
+          //해당 메뉴가 클릭됐을때 () 안의 index가 selectMenuHandler 로 전달되어
+          //해당 메뉴가 클릭되었음이 '상태'로 저장된다.
+          //CSS 원리: 선택되면 className이 'focused', 선택이 안되면 'submenu'가 되고
+          //className 에 따라 CSS 가 다르게 적용된다.
           key={0}
           onClick={() => selectMenuHandler(0)}
           className={currentTab === 0 ? 'focused' : 'submenu'}
@@ -86,6 +94,7 @@ const Menu = ({ accessToken, isLogin }) => {
           <span>개인정보를 수정할 수 있으며, 등록한 자격증을 확인할 수 있습니다.</span>
         </li>
       </Ul>
+      {/* 현재 currentTab 의 state(=index) 에 따라 컴포넌트가 다르게 렌더링 된다 */}
       {list[currentTab]}
     </>
   )
