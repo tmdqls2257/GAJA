@@ -1,6 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    text-decoration-line: none;
+    color: white;
+
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        text-decoration-line: none;
+    }
+`
 
 export const Button = styled.div`
   background: #2573ef;
@@ -49,7 +61,7 @@ const ModalContent = styled.div`
   top: 0px;
   border-radius: 10px;
   max-width: 40%;
-  min-width: 500px;
+  min-width: 550px;
   height: 300px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 `
@@ -60,24 +72,27 @@ const H1 = styled.h1`
 
 const Modal = ({ setOpenModal, modalText }) => {
   const [path, setPath] = useState('')
-  const modalHandler = () => {
+
+  useEffect(() => {
     if (modalText === '회원가입이 필요합니다.') {
       setPath('/signup')
     } else if (modalText === '로그인 되었습니다.') {
       setPath('/main')
-    } else {
-      setPath('/')
+    } else if (modalText === '이미 등록되어 있는 계정입니다.' || modalText === '회원가입 되었습니다.') {
+      setPath('/login')
     }
-    setOpenModal(false)
-  }
+  }, []) //! Too many re-render가 나오면 useEffect 사용을 고려해보자
+
   return (
     <ModalDiv>
       <ModalOverlay />
       <ModalContent>
         <H1>{modalText}</H1>
-        <Link to={path}>
-          <Button onClick={modalHandler}>닫기</Button>
-        </Link>
+        <StyledLink to={path}>
+          <Button onClick={() => setOpenModal(false)}>
+            닫기
+          </Button>
+        </StyledLink>
       </ModalContent>
     </ModalDiv>
   )

@@ -64,9 +64,8 @@ export const Container = styled.div`
 //   }
 // }
 
-function Internship() {
-
-  let data;
+function Internship () {
+  let data
 
   axios
     .get('https://localhost:4000/page/internship')
@@ -80,7 +79,7 @@ function Internship() {
       <Container>
         <ul>
           <li>
-            <h2></h2>
+            <h2 />
           </li>
         </ul>
       </Container>

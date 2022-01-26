@@ -24,13 +24,13 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 `
-const Header = () => {
+const Header = ({ isLogin }) => {
   return (
     <Box>
       <GlobalStyle />
       <Container>
         <Searchbar />
-        <Navigation />
+        <Navigation isLogin={isLogin} />
       </Container>
     </Box>
   )

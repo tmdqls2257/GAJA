@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 function Main ({ accessToken, isLogin }) {
   return (
     <>
-      <Header />
+      <Header isLogin={isLogin} />
       <Menu accessToken={accessToken} isLogin={isLogin} />
       <Footer />
     </>

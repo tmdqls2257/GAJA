@@ -36,7 +36,7 @@ const StyledLink = styled(Link)`
     }
 `
 
-const Navigation = () => {
+const Navigation = ({ isLogin }) => {
   return (
     <>
       <Container>
