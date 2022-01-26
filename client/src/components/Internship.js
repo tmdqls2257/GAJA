@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function InternshipScholarship () {
+function Internship() {
   return (
     <>
       <h1>Internship</h1>
@@ -9,4 +9,4 @@ function InternshipScholarship () {
   )
 }
 
-export default InternshipScholarship
+export default Internship
