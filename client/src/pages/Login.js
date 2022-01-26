@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import gaja from '../images/logo.png'
 import Header from '../components/Header'
-
+import axios from 'axios'
 import Modal from '../components/Modal'
 
 export const Box = styled.div`
@@ -68,22 +68,23 @@ export const HiddenMessege = styled.div`
   color: red;
 `
 
-const LoginSignup = ({ isSignup }) => {
+const Login = ({ loginHandler }) => {
   const [openModal, setOpenModal] = useState(false)
+  const [modalText, setModalText] = useState('')
 
   const isKorean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/
   const isEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
-  const isPerfectKorean = /^[\가-\힣+]*$/
+  // const isPerfectKorean = /^[\가-\힣+]*$/
 
   const [ID, setID] = useState('')
   const [password, setPassword] = useState('')
-  const [repassword, setRepassword] = useState('')
-  const [name, setName] = useState('')
+  // const [repassword, setRepassword] = useState('')
+  // const [name, setName] = useState('')
 
   const [warnID, setWarnID] = useState('')
   const [warnPassword, setWarnPassword] = useState('')
-  const [warnRepassword, setWarnRepassword] = useState('')
-  const [warnName, setWarnName] = useState('')
+  // const [warnRepassword, setWarnRepassword] = useState('')
+  // const [warnName, setWarnName] = useState('')
 
   const IDHandler = (e) => {
     setID(e.target.value)
@@ -93,48 +94,39 @@ const LoginSignup = ({ isSignup }) => {
     setPassword(e.target.value)
     blur(e)
   }
-  const repasswordHandler = (e) => {
-    setRepassword(e.target.value)
-    blur(e)
-  }
-  const nameHandler = (e) => {
-    setName(e.target.value)
-    blur(e)
-  }
-  
+
   const loginValidater = () => {
     if (ID && password) {
-      if (!warnID && !warnPassword) {
+      if (!warnID && !warnPassword) { // 로그인 조건이 되는 경우
+        axios
+        .post(
+          'https://localhost:4000/user/login',
+          {email: ID, password},
+          {'Content-Type': 'application/json', 
+            withCredentials: true}
+        )
+          .then(res => {
+            const { message } = res.data
+            if (message === '회원가입이 필요합니다.') {
+              setModalText('회원가입이 필요합니다.')
+              setOpenModal(true)
+            } else if (message === '비밀번호를 확인해주세요') {
+              setWarnID('비밀번호를 확인해주세요')
+            } else {
+              const {accessToken} = res.data.data;
+              setModalText('로그인 되었습니다.')
+              setOpenModal(true)
+            }
+          })
+          .catch(console.log)
         //! 서버에 로그인 요청
         //! main으로 리다이렉트
-        //? 둘중 하나가 틀리면 에러문구 화면에 보여주기
+        // ? 둘중 하나가 틀리면 에러문구 화면에 보여주기
       }
     } else {
       setWarnID('아이디 또는 비밀번호가 잘못되었습니다.')
       setWarnPassword('아이디 또는 비밀번호가 잘못되었습니다.')
-    } 
-  }
-  const validater = () => { //! 유효성 검사 함수를 라우트해주는 함수
-    if (isSignup) {
-      signupValidater()
-    } else {
-      loginValidater()
     }
-  }
-  const signupValidater = () => {
-    if (ID && password && repassword && name) {
-      if (!(warnID || warnPassword || warnRepassword || warnName)) {
-        //! 서버에 회원가입 요청
-        //! 그 이후 모달창 띄우기
-        //! 그 이후 isSignup = false로 바꿔서 로그인 화면 보여주기
-      }
-    }
-  }
-  const modalHandler = () => { //! 모달을 띄우기 위한 함수
-    if (!isSignup) {
-      return
-    }
-    setOpenModal(true)
   }
 
   const blur = (e) => {
@@ -162,36 +154,12 @@ const LoginSignup = ({ isSignup }) => {
       } else {
         setWarnPassword('')
       }
-      return
-    }
-
-    if (type === 'password-reconfirm') {
-      if (!value) {
-        setWarnRepassword('필수 항목입니다.')
-      } else if (!password) {
-        setWarnRepassword('먼저 비밀번호를 입력하여 주십시오.')
-      } else if (password !== repassword) {
-        setWarnRepassword('비밀번호가 일치하지 않습니다')
-      } else {
-        setWarnRepassword('')
-      }
-      return
-    }
-
-    if (type === 'name') {
-      if (!value) {
-        setWarnName('필수 항목입니다.')
-      } else if (!isPerfectKorean.test(value) || value.length < 2 || value.length > 4) {
-        setWarnName('이름은 2자 이상 4자 이하의 한글로 작성해야 합니다.')
-      } else {
-        setWarnName('')
-      }
     }
   }
 
   return (
     <>
-      {openModal ? <Modal setOpenModal={setOpenModal} isSignup={isSignup} /> : null}
+      {openModal ? <Modal setOpenModal={setOpenModal} modalText={modalText} /> : null}
       <Header />
       <Box>
         <Container>
@@ -206,26 +174,11 @@ const LoginSignup = ({ isSignup }) => {
             <input id='password' type='password' placeholder='비밀번호는 4자 이상 20자 이하입니다.' value={password} onChange={passwordHandler} />
             <HiddenMessege type='password'>{warnPassword}</HiddenMessege>
           </div>
-
-          {isSignup
-            ? <>
-              <div>
-                <label htmlFor='password-reconfirm'>비밀번호 확인</label><br />
-                <input id='password-reconfirm' type='password' value={repassword} onChange={repasswordHandler} />
-                <HiddenMessege>{warnRepassword}</HiddenMessege>
-              </div>
-              <div>
-                <label htmlFor='name'>이름</label><br />
-                <input id='name' type='text' placeholder='이름은 2자 이상 4자 이하의 한글입니다.' value={name} onChange={nameHandler} />
-                <HiddenMessege>{warnName}</HiddenMessege>
-              </div>
-            </>
-            : null}
-          <Button onClick={validater}>{isSignup ? '회원가입' : '로그인'}</Button>
+          <Button onClick={loginValidater}>로그인</Button>
         </Container>
       </Box>
     </>
   )
 }
 
-export default LoginSignup
+export default Login

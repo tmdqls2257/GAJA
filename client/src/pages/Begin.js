@@ -75,7 +75,7 @@ const StyledLink = styled(Link)`
     }
 `
 
-function Begin() {
+function Begin () {
   return (
     <>
       <Container>

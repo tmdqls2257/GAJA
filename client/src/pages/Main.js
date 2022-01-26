@@ -3,8 +3,7 @@ import Header from '../components/Header'
 import Menu from '../components/Menu'
 import Footer from '../components/Footer'
 
-function Main({ accessToken, isLogin }) {
-
+function Main ({ accessToken, isLogin }) {
   return (
     <>
       <Header />

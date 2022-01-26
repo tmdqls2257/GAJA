@@ -71,8 +71,7 @@ export const List = styled.div`
   }
 `
 
-function Mypage({ accessToken, isLogin }) {
-
+function Mypage ({ accessToken, isLogin }) {
   const [currentTab, setcurrentTab] = useState(0)
   const list = [
     <Myinfo accessToken={accessToken} />,
@@ -103,8 +102,8 @@ function Mypage({ accessToken, isLogin }) {
   return (
     <>
       <Container>
-        {isLogin ?
-          <MyPage>
+        {isLogin
+          ? <MyPage>
 
             <Sidebar>
               <h2 className='mypage_menu'>MENU</h2>
@@ -146,10 +145,9 @@ function Mypage({ accessToken, isLogin }) {
               <p>{list[currentTab]}</p>
             </Desc>
 
-          </MyPage>
+            </MyPage>
 
-          :
-          <Need>
+          : <Need>
             <h1 className='mypage_login_title'>로그인이 필요합니다</h1>
             <Link to='/login'>
               <button className='mypage_login_button'>로그인</button>

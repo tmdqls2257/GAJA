@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const Button = styled.div`
@@ -54,13 +55,26 @@ const ModalContent = styled.div`
 const H1 = styled.h1`
   margin-bottom: 40px;
 `
-const Modal = ({ setOpenModal, isSignup }) => {
+const Modal = ({ setOpenModal, modalText }) => {
+  const [path, setPath] = useState('')
+  const modalHandler = () => {
+    if (modalText === '회원가입이 필요합니다.') {
+      setPath('/signup')
+    } else if (modalText === '로그인 되었습니다.') {
+      setPath('/main')
+    } else {
+      setPath('/')
+    }
+    setOpenModal(false)
+  }
   return (
     <ModalDiv>
       <ModalOverlay />
       <ModalContent>
-        <H1>{isSignup ? '회원가입이 완료되었습니다' : '회원탈퇴가 완료되었습니다'}</H1>
-        <Button onClick={() => setOpenModal(false)}>닫기</Button>
+        <H1>{modalText}</H1>
+        <Link to={path}>
+          <Button onClick={modalHandler}>닫기</Button>
+        </Link>
       </ModalContent>
     </ModalDiv>
   )
