@@ -30,6 +30,7 @@ const ModalDiv = styled.div`
   align-items: center;
   z-index:1000;
 `
+
 const ModalOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
@@ -52,9 +53,11 @@ const ModalContent = styled.div`
   height: 300px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 `
+
 const H1 = styled.h1`
   margin-bottom: 40px;
 `
+
 const Modal = ({ setOpenModal, modalText }) => {
   const [path, setPath] = useState('')
   const modalHandler = () => {
