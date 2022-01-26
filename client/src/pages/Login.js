@@ -76,18 +76,18 @@ const Login = ({ loginHandler }) => {
   const isEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
   // const isPerfectKorean = /^[\가-\힣+]*$/
 
-  const [ID, setID] = useState('')
+  const [id, setId] = useState('')
   const [password, setPassword] = useState('')
   // const [repassword, setRepassword] = useState('')
   // const [name, setName] = useState('')
 
-  const [warnID, setWarnID] = useState('')
+  const [warnId, setWarnId] = useState('')
   const [warnPassword, setWarnPassword] = useState('')
   // const [warnRepassword, setWarnRepassword] = useState('')
   // const [warnName, setWarnName] = useState('')
 
-  const IDHandler = (e) => {
-    setID(e.target.value)
+  const idHandler = (e) => {
+    setId(e.target.value)
     blur(e)
   }
   const passwordHandler = (e) => {
@@ -96,24 +96,29 @@ const Login = ({ loginHandler }) => {
   }
 
   const loginValidater = () => {
-    if (ID && password) {
-      if (!warnID && !warnPassword) { // 로그인 조건이 되는 경우
+    if (id && password) {
+      if (!warnId && !warnPassword) { // 로그인 조건이 되는 경우
         axios
-        .post(
-          'https://localhost:4000/user/login',
-          {email: ID, password},
-          {'Content-Type': 'application/json', 
-            withCredentials: true}
-        )
+          .post(
+            'https://localhost:4000/user/login',
+            {
+              email: id,
+              password: password
+            },
+            {
+              'Content-Type': 'application/json',
+              withCredentials: true
+            }
+          )
           .then(res => {
             const { message } = res.data
             if (message === '회원가입이 필요합니다.') {
               setModalText('회원가입이 필요합니다.')
               setOpenModal(true)
             } else if (message === '비밀번호를 확인해주세요') {
-              setWarnID('비밀번호를 확인해주세요')
+              setWarnId('비밀번호를 확인해주세요')
             } else {
-              const {accessToken} = res.data.data;
+              const { accessToken } = res.data.data;
               setModalText('로그인 되었습니다.')
               setOpenModal(true)
             }
@@ -124,7 +129,7 @@ const Login = ({ loginHandler }) => {
         // ? 둘중 하나가 틀리면 에러문구 화면에 보여주기
       }
     } else {
-      setWarnID('아이디 또는 비밀번호가 잘못되었습니다.')
+      setWarnId('아이디 또는 비밀번호가 잘못되었습니다.')
       setWarnPassword('아이디 또는 비밀번호가 잘못되었습니다.')
     }
   }
@@ -135,11 +140,11 @@ const Login = ({ loginHandler }) => {
 
     if (type === 'email') {
       if (!value) {
-        setWarnID('필수 항목입니다.')
+        setWarnId('필수 항목입니다.')
       } else if (!isEmail.test(value)) {
-        setWarnID('이메일 형식이 올바르지 않습니다.')
+        setWarnId('이메일 형식이 올바르지 않습니다.')
       } else {
-        setWarnID('')
+        setWarnId('')
       }
       return
     }
@@ -166,8 +171,8 @@ const Login = ({ loginHandler }) => {
           <img src={gaja} alt='img' />
           <div>
             <label htmlFor='email'>아이디</label><br />
-            <input id='email' type='email' placeholder='이메일 형식으로 입력해 주세요.' value={ID} onChange={IDHandler} />
-            <HiddenMessege type='email'>{warnID}</HiddenMessege>
+            <input id='email' type='email' placeholder='이메일 형식으로 입력해 주세요.' value={id} onChange={idHandler} />
+            <HiddenMessege type='email'>{warnId}</HiddenMessege>
           </div>
           <div>
             <label htmlFor='password'>비밀번호</label><br />
