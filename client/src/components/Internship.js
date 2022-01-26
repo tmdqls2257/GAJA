@@ -66,33 +66,33 @@ export const Container = styled.div`
 
 function Internship() {
 
-  const convertUnix = (timestamp) => {
-    var time = new Date(timestamp * 1000);
-    let year = time.getFullYear();
-    let month = time.getMonth() + 1;
-    let date = time.getDate();
-    return `${year}-${month}-${date}`
-  }
+  // const convertUnix = (timestamp) => {
+  //   var time = new Date(timestamp * 1000);
+  //   let year = time.getFullYear();
+  //   let month = time.getMonth() + 1;
+  //   let date = time.getDate();
+  //   return `${year}-${month}-${date}`
+  // }
 
-  let internshipList
+  // let internshipList
 
-  axios
-    .get('https://localhost:4000/page/internship')
-    .then((res) => {
-      let saraminData = res.data.data
-      internshipList = saraminData.slice(0, 8)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  // axios
+  //   .get('https://localhost:4000/page/internship')
+  //   .then((res) => {
+  //     let saraminData = res.data.data
+  //     internshipList = saraminData.slice(0, 8)
+  //   })
+  //   .catch((error) => {
+  //     console.log(error)
+  //   })
 
-  let internshipData = internshipList.map((internship) => {
-    return {
-      name: internship.company.detail.name,
-      start: convertUnix(Number(internship['opening-timestamp'])),
-      expiration: convertUnix(Number(internship['expiration-timestamp']))
-    }
-  })
+  // let internshipData = internshipList.map((internship) => {
+  //   return {
+  //     name: internship.company.detail.name,
+  //     start: convertUnix(Number(internship['opening-timestamp'])),
+  //     expiration: convertUnix(Number(internship['expiration-timestamp']))
+  //   }
+  // })
 
   return (
     <>

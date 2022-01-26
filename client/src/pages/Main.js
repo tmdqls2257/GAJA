@@ -12,7 +12,9 @@ function Main({ accessToken, isLogin }) {
   return (
     <>
       <Header isLogin={isLogin} />
-      <Menu accessToken={accessToken} isLogin={isLogin} />
+      <Box>
+        <Menu accessToken={accessToken} isLogin={isLogin} />
+      </Box>
       <Footer />
     </>
   )
