@@ -5,7 +5,7 @@ import Begin from './pages/Begin'
 import Main from './pages/Main'
 import Mypage from './components/Mypage'
 
-function App() {
+function App () {
   return (
     <BrowserRouter>
       <Routes>

@@ -1,6 +1,6 @@
-node_modules
 .env
 localhost
-
+node_modules
 *package-lock.json
 *.pem
+.DS_Store
