@@ -11,10 +11,8 @@ export const Box = styled.div`
 function Main({ accessToken, isLogin }) {
   return (
     <>
-      <Header />
-      <Box>
-        <Menu accessToken={accessToken} isLogin={isLogin} />
-      </Box>
+      <Header isLogin={isLogin} />
+      <Menu accessToken={accessToken} isLogin={isLogin} />
       <Footer />
     </>
   )

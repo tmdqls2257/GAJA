@@ -99,7 +99,7 @@ function Internship() {
       <Container>
         <ul>
           <li>
-            <h2></h2>
+            <h2 />
           </li>
         </ul>
       </Container>

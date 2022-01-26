@@ -68,7 +68,7 @@ export const HiddenMessege = styled.div`
   color: red;
 `
 
-const Login = ({ loginHandler }) => {
+const Login = ({ setIsLogin, setAccessToken }) => {
   const [openModal, setOpenModal] = useState(false)
   const [modalText, setModalText] = useState('')
 
@@ -111,26 +111,23 @@ const Login = ({ loginHandler }) => {
             }
           )
           .then(res => {
-            const { message } = res.data
+            const { accessToken } = res.data.data
+            setModalText('로그인 되었습니다.')
+            setOpenModal(true)
+            setIsLogin(true)
+            setAccessToken(accessToken)
+          })
+          .catch(err => {
+            const { message } = err.response.data
             if (message === '회원가입이 필요합니다.') {
               setModalText('회원가입이 필요합니다.')
               setOpenModal(true)
             } else if (message === '비밀번호를 확인해주세요') {
+              console.log('success')
               setWarnId('비밀번호를 확인해주세요')
-            } else {
-              const { accessToken } = res.data.data;
-              setModalText('로그인 되었습니다.')
-              setOpenModal(true)
             }
           })
-          .catch(console.log)
-        //! 서버에 로그인 요청
-        //! main으로 리다이렉트
-        // ? 둘중 하나가 틀리면 에러문구 화면에 보여주기
       }
-    } else {
-      setWarnId('아이디 또는 비밀번호가 잘못되었습니다.')
-      setWarnPassword('아이디 또는 비밀번호가 잘못되었습니다.')
     }
   }
 
