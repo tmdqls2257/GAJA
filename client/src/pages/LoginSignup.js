@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import gaja from '../images/logo.png'
 import Header from '../components/Header'
 
+import Modal from '../components/Modal'
+
 export const Box = styled.div`
   border-top : 2px solid #D3D3D3;
   display: flex;
@@ -39,7 +41,6 @@ export const Container = styled.div`
       font-size: 20px; 
       margin-top: 20px;
       padding: 10px 5px;
-
   }
 `
 export const Button = styled.div`
@@ -68,6 +69,8 @@ export const HiddenMessege = styled.div`
 `
 
 const LoginSignup = ({ isSignup }) => {
+  const [openModal, setOpenModal] = useState(false)
+
   const isKorean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/
   const isEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
   const isPerfectKorean = /^[\가-\힣+]*$/
@@ -82,10 +85,57 @@ const LoginSignup = ({ isSignup }) => {
   const [warnRepassword, setWarnRepassword] = useState('')
   const [warnName, setWarnName] = useState('')
 
-  const IDHandler = (e) => setID(e.target.value)
-  const passwordHandler = (e) => setPassword(e.target.value)
-  const repasswordHandler = (e) => setRepassword(e.target.value)
-  const nameHandler = (e) => setName(e.target.value)
+  const IDHandler = (e) => {
+    setID(e.target.value)
+    blur(e)
+  }
+  const passwordHandler = (e) => {
+    setPassword(e.target.value)
+    blur(e)
+  }
+  const repasswordHandler = (e) => {
+    setRepassword(e.target.value)
+    blur(e)
+  }
+  const nameHandler = (e) => {
+    setName(e.target.value)
+    blur(e)
+  }
+  
+  const loginValidater = () => {
+    if (ID && password) {
+      if (!warnID && !warnPassword) {
+        //! 서버에 로그인 요청
+        //! main으로 리다이렉트
+        //? 둘중 하나가 틀리면 에러문구 화면에 보여주기
+      }
+    } else {
+      setWarnID('아이디 또는 비밀번호가 잘못되었습니다.')
+      setWarnPassword('아이디 또는 비밀번호가 잘못되었습니다.')
+    } 
+  }
+  const validater = () => { //! 유효성 검사 함수를 라우트해주는 함수
+    if (isSignup) {
+      signupValidater()
+    } else {
+      loginValidater()
+    }
+  }
+  const signupValidater = () => {
+    if (ID && password && repassword && name) {
+      if (!(warnID || warnPassword || warnRepassword || warnName)) {
+        //! 서버에 회원가입 요청
+        //! 그 이후 모달창 띄우기
+        //! 그 이후 isSignup = false로 바꿔서 로그인 화면 보여주기
+      }
+    }
+  }
+  const modalHandler = () => { //! 모달을 띄우기 위한 함수
+    if (!isSignup) {
+      return
+    }
+    setOpenModal(true)
+  }
 
   const blur = (e) => {
     const value = e.target.value
@@ -141,18 +191,19 @@ const LoginSignup = ({ isSignup }) => {
 
   return (
     <>
+      {openModal ? <Modal setOpenModal={setOpenModal} isSignup={isSignup} /> : null}
       <Header />
       <Box>
         <Container>
           <img src={gaja} alt='img' />
           <div>
             <label htmlFor='email'>아이디</label><br />
-            <input id='email' type='email' placeholder='이메일 형식으로 입력해 주세요.' value={ID} onChange={IDHandler} onBlur={blur} />
+            <input id='email' type='email' placeholder='이메일 형식으로 입력해 주세요.' value={ID} onChange={IDHandler} />
             <HiddenMessege type='email'>{warnID}</HiddenMessege>
           </div>
           <div>
             <label htmlFor='password'>비밀번호</label><br />
-            <input id='password' type='password' placeholder='비밀번호는 4자 이상 20자 이하입니다.' value={password} onChange={passwordHandler} onBlur={blur} />
+            <input id='password' type='password' placeholder='비밀번호는 4자 이상 20자 이하입니다.' value={password} onChange={passwordHandler} />
             <HiddenMessege type='password'>{warnPassword}</HiddenMessege>
           </div>
 
@@ -160,17 +211,17 @@ const LoginSignup = ({ isSignup }) => {
             ? <>
               <div>
                 <label htmlFor='password-reconfirm'>비밀번호 확인</label><br />
-                <input id='password-reconfirm' type='password' value={repassword} onChange={repasswordHandler} onBlur={blur} />
+                <input id='password-reconfirm' type='password' value={repassword} onChange={repasswordHandler} />
                 <HiddenMessege>{warnRepassword}</HiddenMessege>
               </div>
               <div>
                 <label htmlFor='name'>이름</label><br />
-                <input id='name' type='text' placeholder='이름은 2자 이상 4자 이하의 한글입니다.' value={name} onChange={nameHandler} onBlur={blur} />
+                <input id='name' type='text' placeholder='이름은 2자 이상 4자 이하의 한글입니다.' value={name} onChange={nameHandler} />
                 <HiddenMessege>{warnName}</HiddenMessege>
               </div>
             </>
             : null}
-          <Button>{isSignup ? '회원가입' : '로그인'}</Button>
+          <Button onClick={validater}>{isSignup ? '회원가입' : '로그인'}</Button>
         </Container>
       </Box>
     </>

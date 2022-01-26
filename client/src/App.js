@@ -4,6 +4,7 @@ import LoginSignup from './pages/LoginSignup'
 import Begin from './pages/Begin'
 import Main from './pages/Main'
 import Mypage from './components/Mypage'
+import Modal from './components/Modal'
 
 function App() {
 
