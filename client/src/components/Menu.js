@@ -15,18 +15,21 @@ export const Ul = styled.ul`
   justify-content: center;
   align-items: center;
   color: white;
-  background: #2573ef;
 
     > li {
-    max-width: 33%;
+    max-width: 25%;
+    background: #2573ef;
     height: 100%;
     display: flex;
     flex-direction: column;
-    margin: 5px 10px; 
+    margin-top: 2rem;
+    margin-right: 7px;
+    margin-left: 7px;
     display: flex;
     align-items:center;
     transition: 0.4s;
     padding: 0 10px;
+    border-radius: 30px;
 
       &:hover {
         background: #0044FF;

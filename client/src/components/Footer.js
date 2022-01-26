@@ -4,17 +4,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 export const Container = styled.div`
-  background: #2573ef;
+  background: #5B5B5B;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 8px;
+  font-size: 13px;
   color: white;
   max-width: 100vw;
   min-width: 1190px;
 
   a {
       text-decoration-line: none;
+      color: white;
+      font-weight: bold;
 
       &:visited {
           color: white;
