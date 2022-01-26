@@ -4,7 +4,7 @@ const {
   generateAccessToken,
   resendAccessToken
 } = require('../tokenFunctions')
-const { User, license } = require('../../models')
+const { Users, license } = require('../../models')
 
 module.exports = async (req, res) => {
   const accessTokenData = isAuthorized(req)
@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
     if (req.cookies.refreshToken) {
       const refreshTokenData = checkRefeshToken(req.cookies.refreshToken)
       const { email } = refreshTokenData
-      User.findOne({ where: { email } })
+      Users.findOne({ where: { email } })
         .then((data) => {
           delete data.dataValues.password
           const accessToken = generateAccessToken(data.dataValues)
@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
     if (!name || !expiration) { return res.status(422).send({ data: null, message: '모든 항목을 채워주세요' }) }
     const { email } = accessTokenData
 
-    User.findOne({ where: { email } })
+    Users.findOne({ where: { email } })
       .then((data) => {
         delete data.dataValues.password
         const userId = data.dataValues.id
@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
             for (let i = 0; i < licenseData.length; i++) {
               if (licenseData[i].name === name) {
                 return res.status(201)
-                // .redirect('https://localhost:3000/mypage/mypage')
+                  // .redirect('https://localhost:3000/mypage/mypage')
                   .send({ data: { userInfo: data, license: licenseData }, maessage: '이미 등록되어있습니다.' })
               }
             }
