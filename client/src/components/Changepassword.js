@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
@@ -8,7 +9,24 @@ export const ChangePassword = styled.div`
   flex-direction: column;
 `
 
-function Changepassword ({ accessToken }) {
+function Changepassword({ accessToken }) {
+  const [email, setEmail] = useState('')
+
+  axios
+    .get('https://localhost:4000/mypage/mypage', {
+      headers: {
+        Authorization: accessToken,
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    })
+    .then((response) => {
+      setEmail(response.data.userInfo.email)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
   const [original, setOriginal] = useState('')
   const [change, setChange] = useState('')
   const [check, setCheck] = useState('')
@@ -16,8 +34,6 @@ function Changepassword ({ accessToken }) {
   const [oriCorrect, setOriCorrect] = useState(true)
   const [chgCorrect, setChgCorrect] = useState(true)
   const [chkCorrect, setChkCorrect] = useState(true)
-
-  const testPassword = '1234'
 
   const handleOriginal = (e) => {
     setOriginal(e.target.value)
@@ -37,9 +53,43 @@ function Changepassword ({ accessToken }) {
     // 변경 비밀번호와 비밀번호 확인이 일치하는지 검토하고
     // 모든 정보가 일치하면 비밀번호를 변경하도록 한다.
     // 비밀번호는 4자리 이상, 20자리 이하로 입력해야한다.
-    if (original !== testPassword) { setOriCorrect(false) } else { setOriCorrect(true) }
-    if (change === testPassword) { setChgCorrect(false) } else { setChgCorrect(true) }
+    axios
+      .post('https://localhost:4000/user/login',
+        {
+          email: email,
+          passowrd: original
+        },
+        { 'Content-Type': 'application/json', withCredentials: true }
+      )
+      .then((response) => {
+        if (response.status(400)) {
+          setOriCorrect(false)
+        } else {
+          { setOriCorrect(true) }
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+    // if (original !== testPassword) { setOriCorrect(false) } else { setOriCorrect(true) }
+    if (change === original) { setChgCorrect(false) } else { setChgCorrect(true) }
     if (check !== change) { setChkCorrect(false) } else { setChkCorrect(true) }
+
+    if (oriCorrect === chgCorrect === chkCorrect === true) {
+      axios
+        .post('https://localhost:4000/mypage/mypage/1',
+          {
+            password: change
+          },
+          {
+            headers: { Authorization: accessToken },
+            'Content-Type': 'application/json', withCredentials: true
+          })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
   }
 
   return (

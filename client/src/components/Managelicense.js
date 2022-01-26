@@ -16,7 +16,7 @@ export const Add = styled.div`
   flex-direction: column;
 `
 
-function Managelicense ({ accessToken }) {
+function Managelicense({ accessToken }) {
   const [licenseName, setLicenseName] = useState('')
   const [expiration, setExpiration] = useState('')
 
@@ -30,15 +30,18 @@ function Managelicense ({ accessToken }) {
 
   const handleSubmit = () => {
     axios
-      .post('http://localhost:4000/mypage/memo',
+      .post('https://localhost:4000/mypage/memo',
         {
           name: licenseName,
           expiration: expiration
         },
-        { 'Content-Type': 'application/json', withCredentials: true }
+        {
+          headers: { Authorization: accessToken },
+          'Content-Type': 'application/json', withCredentials: true
+        }
       )
-      .then((res) => {
-        console.log(res)
+      .then((response) => {
+        console.log(response)
       })
       .catch((error) => {
         console.log(error)

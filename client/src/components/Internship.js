@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -66,14 +66,33 @@ export const Container = styled.div`
 
 function Internship() {
 
-  let data;
+  const convertUnix = (timestamp) => {
+    var time = new Date(timestamp * 1000);
+    let year = time.getFullYear();
+    let month = time.getMonth() + 1;
+    let date = time.getDate();
+    return `${year}-${month}-${date}`
+  }
+
+  let internshipList
 
   axios
     .get('https://localhost:4000/page/internship')
     .then((res) => {
-      data = res.data.data
-      console.log(data[0].company.detail.name)
+      let saraminData = res.data.data
+      internshipList = saraminData.slice(0, 8)
     })
+    .catch((error) => {
+      console.log(error)
+    })
+
+  let internshipData = internshipList.map((internship) => {
+    return {
+      name: internship.company.detail.name,
+      start: convertUnix(Number(internship['opening-timestamp'])),
+      expiration: convertUnix(Number(internship['expiration-timestamp']))
+    }
+  })
 
   return (
     <>

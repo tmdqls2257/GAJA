@@ -72,6 +72,8 @@ const Menu = ({ accessToken, isLogin }) => {
   // 선택된 탭에 따라서 하단에 렌더링 되는 컴포넌트가 달라진다.
   const list = [<Internship />, <Scholarship />, <Mypage accessToken={accessToken} isLogin={isLogin} />]
 
+  isLogin = true;
+
   const selectMenuHandler = (index) => {
     setcurrentTab(index)
   }

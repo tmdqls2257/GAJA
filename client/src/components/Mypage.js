@@ -71,29 +71,43 @@ export const List = styled.div`
   }
 `
 
-function Mypage ({ accessToken, isLogin }) {
+function Mypage({ accessToken, isLogin }) {
   const [currentTab, setcurrentTab] = useState(0)
   const list = [
     <Myinfo accessToken={accessToken} />,
     <Managelicense accessToken={accessToken} />,
     <Changepassword accessToken={accessToken} />,
-    <Signout accessToken={accessToken} />
-  ]
+    <Signout accessToken={accessToken} />]
+
+  // {
+  //   "data": {
+  //     "userInfo": {
+  //       "id": 1,
+  //       "email": "forcoding95@naver.com",
+  //       "userName": "forcoding95"
+  //     },
+  //     "license": []
+  //   },
+  //   "message": "마이페이지"
+  // }
+
+  let userInfo;
 
   axios
-    .get('https://localhost:4000/mypage/mypage', {
-      headers: {
-        Authorization: accessToken,
-        'Content-Type': 'application/json'
-      },
-      withCredentials: true
-    })
+    .get('https://localhost:4000/mypage/mypage',
+      {
+        headers: { Authorization: accessToken },
+        'Content-Type': 'application/json', withCredentials: true
+      })
     .then((res) => {
-      console.log(res)
+      userInfo = res.data.userInfo
     })
     .catch((err) => {
       throw err
     })
+
+
+  isLogin = true;
 
   const selectMenuHandler = (index) => {
     setcurrentTab(index)
@@ -145,7 +159,7 @@ function Mypage ({ accessToken, isLogin }) {
               <p>{list[currentTab]}</p>
             </Desc>
 
-            </MyPage>
+          </MyPage>
 
           : <Need>
             <h1 className='mypage_login_title'>로그인이 필요합니다</h1>
