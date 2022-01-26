@@ -9,7 +9,7 @@ export const Ul = styled.ul`
   padding: 0;
   max-width: 100vw;
   min-width: 1190px;
-  height: 200px;
+  height: 250px;
   list-style: none;
   display: flex;
   justify-content: center;
@@ -17,15 +17,15 @@ export const Ul = styled.ul`
   color: white;
 
     > li {
-    max-width: 25%;
+    width: 400px;
     background: #2573ef;
     height: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 5rem;
+    margin-top: 7rem;
     margin-right: 7px;
     margin-left: 7px;
-    margin-bottom: 5rem;
+    margin-bottom: 7rem;
     display: flex;
     align-items:center;
     transition: 0.4s;
@@ -42,7 +42,7 @@ export const Ul = styled.ul`
       }
 
       > span {
-          font-size: 20px;
+          font-size: 15px;
       }
 
       &.focused {
@@ -75,7 +75,7 @@ const Menu = ({ accessToken, isLogin }) => {
           className={currentTab === 0 ? 'focused' : 'submenu'}
         >
           <h1>인턴쉽</h1>
-          <span>각종 기업에서 실시하고 있는 인턴 채용에 대해 알아볼 수 있습니다.</span>
+          <span>각종 기업에서 실시하고 있는 <br /> 인턴 채용정보에 대해 알아볼 수 있습니다.</span>
         </li>
         <li
           key={1}
@@ -83,7 +83,7 @@ const Menu = ({ accessToken, isLogin }) => {
           className={currentTab === 1 ? 'focused' : 'submenu'}
         >
           <h1>장학금</h1>
-          <span>대학교, 장학재단 혹은 민간단체 등에서 지급하는 다양한 장학금에 관한 정보를 조회할 수 있습니다.</span>
+          <span>대학교, 장학재단 혹은 민간단체 등에서 지급하는 <br /> 다양한 장학금에 관한 정보를 조회할 수 있습니다.</span>
         </li>
         <li
           key={2}
