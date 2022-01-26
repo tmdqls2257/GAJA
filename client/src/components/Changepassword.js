@@ -8,7 +8,7 @@ export const ChangePassword = styled.div`
   flex-direction: column;
 `
 
-function Changepassword () {
+function Changepassword ({ accessToken }) {
   const [original, setOriginal] = useState('')
   const [change, setChange] = useState('')
   const [check, setCheck] = useState('')

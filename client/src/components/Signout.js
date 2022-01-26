@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 // `
 
-function Signout () {
+function Signout ({ accessToken }) {
   const handleSignout = () => {
     // 회원탈퇴 함수를 작성한다.
   }

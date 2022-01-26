@@ -4,7 +4,7 @@ const {
   generateAccessToken,
   resendAccessToken
 } = require('../tokenFunctions')
-const { User, license } = require('../../models')
+const { Users, license } = require('../../models')
 
 module.exports = (req, res) => {
   const accessTokenData = isAuthorized(req)
@@ -12,7 +12,7 @@ module.exports = (req, res) => {
     if (req.cookies.refreshToken) {
       const refreshTokenData = checkRefeshToken(req.cookies.refreshToken)
       const { email } = refreshTokenData
-      User.findOne({ where: { email } })
+      Users.findOne({ where: { email } })
         .then((data) => {
           delete data.dataValues.password
           const accessToken = generateAccessToken(data.dataValues)
@@ -26,7 +26,7 @@ module.exports = (req, res) => {
     }
   } else {
     const { email } = accessTokenData
-    User.findOne({ where: { email } })
+    Users.findOne({ where: { email } })
       .then((userData) => {
         delete userData.dataValues.password
         license.findAll({ where: { userId: userData.dataValues.id } })

@@ -46,9 +46,6 @@ const Navigation = () => {
         <StyledLink to='/login'>
           <div>회원가입</div>
         </StyledLink>
-        <StyledLink to='/'>
-          <div>GAJA 소개</div>
-        </StyledLink>
       </Container>
     </>
   )

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import gaja from '../images/logo.png'
 
@@ -36,7 +37,7 @@ export const Icon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 10;
   cursor: pointer;
 
   &::before {
@@ -123,7 +124,9 @@ const Searchbar = () => {
 
   return (
     <Container>
-      <Image src={gaja} alt='logo' />
+      <Link to='/'>
+        <Image src={gaja} alt='logo' />
+      </Link>
       <Search>
         <Icon />
         <Input>
