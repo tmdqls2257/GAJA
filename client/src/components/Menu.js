@@ -17,36 +17,52 @@ export const Ul = styled.ul`
   color: white;
 
     > li {
-    width: 400px;
+    width: 350px;
     background: #2573ef;
     height: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 7rem;
-    margin-right: 7px;
+    /* margin-right: 7px; */
     margin-left: 7px;
     margin-bottom: 7rem;
     display: flex;
     align-items:center;
-    transition: 0.4s;
-    padding: 0 10px;
+    transition: 0.2s;
     border-radius: 30px;
 
       &:hover {
+        margin-top: 6.2rem;
         background: #0044FF;
         cursor: pointer;
+        box-shadow: 0px 7px 5px black;
+        transition: 0.2s;
       }
 
       > h1 {
+        font-size: 55px;
         margin: 20px 0;
+        margin-top: 3.2rem;
+        margin-right: auto;
+        margin-left: 1.5rem;
       }
 
       > span {
-          font-size: 15px;
+        text-align: left;
+        font-size: 17px;
+        margin-top: -0.5rem;
+        margin-right: auto;
+        margin-left: 1.5rem;
+        line-height: 25px;
       }
 
       &.focused {
         background: #0044FF;
+      }
+
+      &::selection {
+        background: transparent;
+        pointer-events: none;
       }
     }
 `
@@ -83,7 +99,7 @@ const Menu = ({ accessToken, isLogin }) => {
           className={currentTab === 1 ? 'focused' : 'submenu'}
         >
           <h1>장학금</h1>
-          <span>대학교, 장학재단 혹은 민간단체 등에서 지급하는 <br /> 다양한 장학금에 관한 정보를 조회할 수 있습니다.</span>
+          <span>대학교, 장학재단 혹은 민간단체 등에서 <br /> 지급하는 다양한 장학금에 관한 정보를 <br /> 이곳에서 조회할 수 있습니다.</span>
         </li>
         <li
           key={2}
@@ -91,7 +107,7 @@ const Menu = ({ accessToken, isLogin }) => {
           className={currentTab === 2 ? 'focused' : 'submenu'}
         >
           <h1>마이페이지</h1>
-          <span>개인정보를 수정할 수 있으며, 등록한 자격증을 확인할 수 있습니다.</span>
+          <span>개인정보를 수정할 수 있으며,<br /> 등록한 자격증을 확인할 수 있습니다.</span>
         </li>
       </Ul>
       {/* 현재 currentTab 의 state(=index) 에 따라 컴포넌트가 다르게 렌더링 된다 */}
