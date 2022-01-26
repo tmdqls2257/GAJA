@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Internship() {
+function Internship () {
   return (
     <>
       <h1>Internship</h1>
