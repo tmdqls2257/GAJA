@@ -24,7 +24,6 @@ export const Background = styled.div`
 
 export const Logo = styled.div`
   display: grid;
-  /* margin: auto; */
   margin-top: 3rem;
   width: 100%;
   height: 100%;
@@ -75,7 +74,7 @@ const StyledLink = styled(Link)`
     }
 `
 
-function Begin () {
+function Begin() {
   return (
     <>
       <Container>
