@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   position: relative;
+  margin-left: 1rem;
+  margin-right: 1rem;
   display: flex;
   flex-direction: column;
   width: 250px;
@@ -15,6 +17,7 @@ const Container = styled.div`
 
   &:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  cursor: pointer;
   }
 `
 

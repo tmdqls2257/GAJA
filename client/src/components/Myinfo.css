@@ -184,3 +184,13 @@
   font-weight: bold;
   margin-top: 5rem;
 }
+
+.page_number {
+  font-size: 20px;
+  letter-spacing: 10px;
+  margin-top: 80px;
+}
+
+.header_logo {
+  margin-top: 0rem;
+}

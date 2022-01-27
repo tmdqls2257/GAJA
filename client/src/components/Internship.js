@@ -8,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 5rem;
+  margin-top: -1.2rem;
 `
 
 export const Box = styled.div`
@@ -172,6 +172,7 @@ function Internship() {
             {internshipData2.map(el => <Card name={el.name} start={el.start} expiration={el.expiration} />)}
           </Box>
         </div>
+        <div className='page_number'>{'◁ ◀ 1 2 3 4 5 ▶ ▷'}</div>
       </Container>
     </>
   )

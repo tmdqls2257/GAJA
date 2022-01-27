@@ -9,7 +9,7 @@ export const Container = styled.div`
   justify-content: space-between;
   
   div {
-      width: 100px;
+      width: 90px;
       height: 30px;
       border: 3px solid #287dfc;
       border-radius: 60px;
@@ -18,11 +18,11 @@ export const Container = styled.div`
       display: flex;
       justify-content:center;
       align-items: center;
-      font-size: 18px;
+      font-size: 15px;
       transition: 0.3s;
       margin-right: 10px;
       &:hover {
-        transform: scale(1.1);
+        cursor: pointer;
       }
   }
 `
@@ -35,7 +35,7 @@ const StyledLink = styled(Link)`
     }
 `
 
-const Navigation = ({ isLogin, setIsLogin, setAccessToken}) => {
+const Navigation = ({ isLogin, setIsLogin, setAccessToken }) => {
 
   const logoutHandler = () => {
     setIsLogin(false)
@@ -45,17 +45,17 @@ const Navigation = ({ isLogin, setIsLogin, setAccessToken}) => {
     <>
       <Container>
         {!isLogin ?
-        <>
-        <StyledLink to='/login'>
-          <div>로그인</div>
-        </StyledLink>
-        <StyledLink to='/login'>
-          <div>회원가입</div>
-        </StyledLink>
-        </>
-        : 
-        <div onClick={logoutHandler}>로그아웃</div>
-      }
+          <>
+            <StyledLink to='/login'>
+              <div>로그인</div>
+            </StyledLink>
+            <StyledLink to='/login'>
+              <div>회원가입</div>
+            </StyledLink>
+          </>
+          :
+          <div onClick={logoutHandler}>로그아웃</div>
+        }
       </Container>
     </>
   )

@@ -9,6 +9,7 @@ export const Ul = styled.ul`
   padding: 0;
   max-width: 100vw;
   min-width: 1190px;
+  margin-top: 0px;
   height: 250px;
   list-style: none;
   display: flex;
@@ -24,7 +25,8 @@ export const Ul = styled.ul`
     flex-direction: column;
     margin-top: 7rem;
     /* margin-right: 7px; */
-    margin-left: 7px;
+    margin-left: 0.7rem;
+    margin-right: 0.7rem;
     margin-bottom: 7rem;
     display: flex;
     align-items:center;
