@@ -1,5 +1,5 @@
 # Logo
-<img  src="https://cdn.discordapp.com/attachments/932852459003609098/934361076898861086/logo.png" >
+<img  src="https://cdn.discordapp.com/attachments/932852459003609098/934361076898861086/logo.png" width="18%" height="18%" >
 <br></br>
 
 # About
@@ -9,7 +9,7 @@
 <br></br>
 
 # System Architecture
-<img src='https://cdn.discordapp.com/attachments/932852459003609098/933586875707428924/Web_App_Reference_Architecture_1.png'>
+<img src='https://cdn.discordapp.com/attachments/932852459003609098/933586875707428924/Web_App_Reference_Architecture_1.png'width="30%">
 <br></br>
 
 # Front-end tech stacks
