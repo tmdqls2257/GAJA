@@ -5,6 +5,14 @@ import Card from './Card'
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+`
+
+export const Box = styled.div`
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -155,10 +163,14 @@ function Internship() {
     <>
       <Container>
         <div>
-          {internshipData1.map(el => <Card name={el.name} start={el.start} expiration={el.expiration} />)}
+          <Box>
+            {internshipData1.map(el => <Card name={el.name} start={el.start} expiration={el.expiration} />)}
+          </Box>
         </div>
         <div>
-          {internshipData2.map(el => <Card name={el.name} start={el.start} expiration={el.expiration} />)}
+          <Box>
+            {internshipData2.map(el => <Card name={el.name} start={el.start} expiration={el.expiration} />)}
+          </Box>
         </div>
       </Container>
     </>
