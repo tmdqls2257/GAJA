@@ -8,7 +8,7 @@ export const Box = styled.div`
   height: 950px;
 `
 
-function Main({ accessToken, isLogin }) {
+function Main ({ accessToken, isLogin }) {
   return (
     <>
       <Header isLogin={isLogin} />

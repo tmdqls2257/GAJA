@@ -1,9 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
-function Signout({ accessToken }) {
+function Signout ({ accessToken }) {
   const handleSignout = () => {
-
     axios
       .get('https://localhost:4000/mypage/mypage', {
         headers: {
@@ -18,7 +17,6 @@ function Signout({ accessToken }) {
       .catch((err) => {
         throw err
       })
-
   }
 
   return (

@@ -64,8 +64,7 @@ export const Container = styled.div`
 //   }
 // }
 
-function Internship() {
-
+function Internship () {
   // const convertUnix = (timestamp) => {
   //   var time = new Date(timestamp * 1000);
   //   let year = time.getFullYear();
