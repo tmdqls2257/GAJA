@@ -74,14 +74,11 @@ export const List = styled.div`
 function Mypage({ accessToken, isLogin }) {
   const [currentTab, setcurrentTab] = useState(0)
   const [licenseList, setLicenseList] = useState([])
-<<<<<<< HEAD
   const list = [
     <Myinfo accessToken={accessToken} licenseList={licenseList} />,
     <Managelicense accessToken={accessToken} licenseList={licenseList} />,
     <Changepassword accessToken={accessToken} />,
     <Signout accessToken={accessToken} />]
-=======
->>>>>>> b875ed5a24e39561201fa90d9945a168cdced77b
 
   useEffect(() => {
     axios
@@ -99,13 +96,6 @@ function Mypage({ accessToken, isLogin }) {
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  const list = [
-    <Myinfo accessToken={accessToken} licenseList={licenseList} />,
-    <Managelicense accessToken={accessToken} licenseList={licenseList} />,
-    <Changepassword accessToken={accessToken} />,
-    <Signout accessToken={accessToken} />]
-
   // {
   //   "data": {
   //     "userInfo": {
