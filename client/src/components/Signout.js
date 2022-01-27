@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
 function Signout({ accessToken }) {
-  const handleSignout = () => {
 
+  const [password, setPassword] = useState('')
+
+  let username;
+  let email;
+
+  const handleSignout = () => {
     axios
       .get('https://localhost:4000/mypage/mypage', {
         headers: {
@@ -13,12 +18,12 @@ function Signout({ accessToken }) {
         withCredentials: true
       })
       .then((res) => {
-        console.log(res)
+        username = res.data.data.userInfo.userName
+        email = res.data.data.userInfo.email
       })
       .catch((err) => {
         throw err
       })
-
   }
 
   return (
