@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Modal from './Modal'
 
 export const ChangePassword = styled.div`
   display: flex;
@@ -10,18 +11,21 @@ export const ChangePassword = styled.div`
 `
 
 function Changepassword({ accessToken }) {
-  const [email, setEmail] = useState('')
+  const [openModal, setOpenModal] = useState(false)
+  const [modalText, setModalText] = useState('')
+
+  let email
 
   axios
     .get('https://localhost:4000/mypage/mypage', {
       headers: {
-        Authorization: accessToken,
+        Authorization: `accessToken=${accessToken}`,
         'Content-Type': 'application/json'
       },
       withCredentials: true
     })
     .then((response) => {
-      setEmail(response.data.userInfo.email)
+      email = (response.data.data.userInfo.email)
     })
     .catch((error) => {
       console.log(error)
@@ -57,15 +61,15 @@ function Changepassword({ accessToken }) {
       .post('https://localhost:4000/user/login',
         {
           email: email,
-          passowrd: original
+          password: original
         },
         { 'Content-Type': 'application/json', withCredentials: true }
       )
-      .then((response) => {
-        if (response.status(400)) {
+      .then((res) => {
+        if (res.message === '비밀번호를 확인해주세요') {
           setOriCorrect(false)
         } else {
-          { setOriCorrect(true) }
+          setOriCorrect(true)
         }
       })
       .catch((error) => {
@@ -76,24 +80,28 @@ function Changepassword({ accessToken }) {
     if (change === original) { setChgCorrect(false) } else { setChgCorrect(true) }
     if (check !== change) { setChkCorrect(false) } else { setChkCorrect(true) }
 
-    if (oriCorrect === chgCorrect === chkCorrect === true) {
+    if (oriCorrect && chgCorrect && chkCorrect) {
       axios
         .post('https://localhost:4000/mypage/mypage/1',
           {
             password: change
           },
           {
-            headers: { Authorization: accessToken },
+            headers: { Authorization: `accessToken=${accessToken}` },
             'Content-Type': 'application/json', withCredentials: true
           })
         .catch((error) => {
           console.log(error)
         })
+
+      setModalText('비밀번호가 변경되었습니다.')
+      setOpenModal(true)
     }
   }
 
   return (
     <>
+      {openModal ? <Modal setOpenModal={setOpenModal} modalText={modalText} /> : null}
       <ChangePassword>
         <h1 className='title'>비밀번호 변경 ＞</h1>
         <div>

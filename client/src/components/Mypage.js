@@ -106,9 +106,6 @@ function Mypage({ accessToken, isLogin }) {
       throw err
     })
 
-
-  isLogin = true;
-
   const selectMenuHandler = (index) => {
     setcurrentTab(index)
   }

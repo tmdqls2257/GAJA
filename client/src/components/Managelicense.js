@@ -36,7 +36,7 @@ function Managelicense({ accessToken }) {
           expiration: expiration
         },
         {
-          headers: { Authorization: accessToken },
+          headers: { Authorization: `accessToken=${accessToken}` },
           'Content-Type': 'application/json', withCredentials: true
         }
       )

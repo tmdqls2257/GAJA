@@ -28,11 +28,11 @@ function License({ accessToken }) {
   axios
     .get('https://localhost:4000/mypage/mypage',
       {
-        headers: { Authorization: accessToken },
+        headers: { Authorization: `accessToken=${accessToken}` },
         'Content-Type': 'application/json', withCredentials: true
       })
     .then((response) => {
-      licenseList = response.data.license
+      // console.log(response)
     })
     .catch((error) => {
       console.log(error)

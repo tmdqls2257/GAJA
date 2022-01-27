@@ -29,6 +29,7 @@ export const Profile = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   line-height: 25px;
+  margin-top: -1rem;
   `
 
 // props로 이름이랑 이메일 받아오면 NAME: {name}, E-MAIL: {email} 형식으로 바꾼다.
@@ -36,21 +37,24 @@ function Myinfo({ accessToken }) {
   const [userName, setUserName] = useState('')
   const [email, setEmail] = useState('')
 
+  // console.log(accessToken)
+
   let userData = {}
 
   axios
     .get('https://localhost:4000/mypage/mypage',
       {
-        headers: { Authorization: accessToken },
+        headers: { Authorization: `accessToken=${accessToken}` },
         'Content-Type': 'application/json', withCredentials: true
       })
     .then((response) => {
+      console.log(response.data.message)
       userData = response.data
-      setUserName(userData.userInfo.userName)
-      setEmail(userData.userInfo.email)
+      setUserName(userData.data.userInfo.userName)
+      setEmail(userData.data.userInfo.email)
     })
     .catch((error) => {
-      console.log(error)
+      // console.log(error)
     })
 
   return (
@@ -68,15 +72,15 @@ function Myinfo({ accessToken }) {
             <div>
               <h2 id='greet'>
                 어서오세요,
-                <span id='user'>{userName}</span> 님!
+                <span id='user'> {userName}</span> 님!
               </h2>
               <div className='item'>
                 NAME:
-                <span id='user_name'>{userName}</span>
+                <span id='user_name'> {userName}</span>
               </div>
               <div className='item'>
                 E-MAIL:
-                <span id='user_email'>{email}</span>
+                <span id='user_email'> {email}</span>
               </div>
             </div>
           </Profile>
