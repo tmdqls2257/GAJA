@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 import styled from 'styled-components'
 import Myinfo from './Myinfo'
 import Changepassword from './Changepassword'
 import Managelicense from './Managelicense'
 import Signout from './Signout'
-import axios from 'axios'
 
 export const Container = styled.div`
   max-width: 100vw;
@@ -71,29 +71,42 @@ export const List = styled.div`
   }
 `
 
-function Mypage ({ accessToken, isLogin }) {
+function Mypage({ accessToken, isLogin }) {
   const [currentTab, setcurrentTab] = useState(0)
+  const [licenseList, setLicenseList] = useState([])
   const list = [
-    <Myinfo accessToken={accessToken} />,
-    <Managelicense accessToken={accessToken} />,
+    <Myinfo accessToken={accessToken} licenseList={licenseList} />,
+    <Managelicense accessToken={accessToken} licenseList={licenseList} />,
     <Changepassword accessToken={accessToken} />,
-    <Signout accessToken={accessToken} />
-  ]
+    <Signout accessToken={accessToken} />]
 
-  axios
-    .get('https://localhost:4000/mypage/mypage', {
-      headers: {
-        Authorization: accessToken,
-        'Content-Type': 'application/json'
-      },
-      withCredentials: true
-    })
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      throw err
-    })
+  useEffect(() => {
+    axios
+      .get('https://localhost:4000/mypage/mypage',
+        {
+          headers: { Authorization: `accessToken=${accessToken}` },
+          'Content-Type': 'application/json',
+          withCredentials: true
+        })
+      .then((response) => {
+        setLicenseList(response.data.data.license)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  // {
+  //   "data": {
+  //     "userInfo": {
+  //       "id": 1,
+  //       "email": "forcoding95@naver.com",
+  //       "userName": "forcoding95"
+  //     },
+  //     "license": []
+  //   },
+  //   "message": "마이페이지"
+  // }
 
   const selectMenuHandler = (index) => {
     setcurrentTab(index)
@@ -145,7 +158,7 @@ function Mypage ({ accessToken, isLogin }) {
               <p>{list[currentTab]}</p>
             </Desc>
 
-            </MyPage>
+          </MyPage>
 
           : <Need>
             <h1 className='mypage_login_title'>로그인이 필요합니다</h1>

@@ -11,7 +11,9 @@ module.exports = {
   },
   sendRefreshToken: (res, refreshToken) => {
     return res.cookie('refreshToken', refreshToken, {
-      httpOnly: true
+      httpOnly: true,
+      SameSite: 'none',
+      secure: true
     })
   },
   sendAccessToken: (res, accessToken) => {

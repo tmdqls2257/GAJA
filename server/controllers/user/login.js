@@ -17,9 +17,9 @@ module.exports = (req, res) => {
     .then((data) => {
       console.log(data)
       if (!data) {
-        return res.status(400).send({ data: null, message: '회원가입이 필요합니다.' })
+        return res.status(400).json({ data: null, message: '회원가입이 필요합니다.' })
       } else if (data.dataValues.password !== password) {
-        return res.status(400).send({ data: null, message: '비밀번호를 확인해주세요' })
+        return res.status(400).json({ data: null, message: '비밀번호를 확인해주세요' })
       }
 
       delete data.dataValues.password

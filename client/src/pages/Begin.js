@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import gaja from '../images/logo.png'
-import background from '../images/begin_background.jpeg'
 import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
@@ -24,7 +23,6 @@ export const Background = styled.div`
 
 export const Logo = styled.div`
   display: grid;
-  /* margin: auto; */
   margin-top: 3rem;
   width: 100%;
   height: 100%;
@@ -75,7 +73,7 @@ const StyledLink = styled(Link)`
     }
 `
 
-function Begin () {
+function Begin() {
   return (
     <>
       <Container>
