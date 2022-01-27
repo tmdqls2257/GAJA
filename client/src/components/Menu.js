@@ -67,7 +67,7 @@ export const Ul = styled.ul`
     }
 `
 
-const Menu = ({ accessToken, isLogin }) => {
+const Menu = ({ accessToken, isLogin, setIsLogin, setAccessToken }) => {
   const [currentTab, setcurrentTab] = useState(0)
   // 선택된 탭에 따라서 하단에 렌더링 되는 컴포넌트가 달라진다.
   const list = [<Internship />, <Scholarship />, <Mypage accessToken={accessToken} isLogin={isLogin} />]

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import Card from './Card'
 
 export const Container = styled.div`
 
@@ -64,19 +65,20 @@ export const Container = styled.div`
 //   }
 // }
 
-function Internship() {
+function Internship () {
+  const [internshipData, setIntershipData] = useState([])
 
-  //------------- timestamp 를 dateTime 으로 바꾸는 function 입니다 -------------
-  // const convertUnix = (timestamp) => {
-  //   var time = new Date(timestamp * 1000);
-  //   let year = time.getFullYear();
-  //   let month = time.getMonth() + 1;
-  //   let date = time.getDate();
-  //   return `${year}-${month}-${date}`
-  // }
-  //------------------------------------------------------------------------
+  // ------------- timestamp 를 dateTime 으로 바꾸는 function 입니다 -------------
+  const convertUnix = (timestamp) => {
+    const time = new Date(timestamp * 1000)
+    const year = time.getFullYear()
+    const month = time.getMonth() + 1
+    const date = time.getDate()
+    return `${year}-${month}-${date}`
+  }
+  // ------------------------------------------------------------------------
 
-  //------------ timestamp 를 입력하면 D-Day를 반환하는 function 입니다 ------------
+  // ------------ timestamp 를 입력하면 D-Day를 반환하는 function 입니다 ------------
   // Number 타입이면서 unix 형태의 timestamp 를 넣어주셔야합니다!
   // 예를 들어, getDday(1648393199) 를 입력하면 59 가 출력이 됩니다.
   // 1648393199(Unix) <-> '2022-3-27'(Date) --> 오늘로부터 59일 남음!
@@ -92,8 +94,29 @@ function Internship() {
   //   var result = Math.floor(gap/(1000*60*60*24))*-1;
   //   return result;
   // }
-  //-------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
+  // let internshipData // 객체 {name, start, expiration}을 요소로 갖는 length 8의 배열
 
+  useEffect(() => {
+    axios
+      .get('https://localhost:4000/page/internship')
+      .then((res) => {
+        const saraminData = res.data.data
+
+        const internshipList = saraminData.slice(0, 8) // length가 8인 배열
+        const data = internshipList.map((internship) => { // length가 8인 배열
+          return {
+            name: internship.company.detail.name,
+            start: convertUnix(Number(internship['opening-timestamp'])),
+            expiration: convertUnix(Number(internship['expiration-timestamp']))
+          }
+        })
+        setIntershipData(data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
   // let internshipList
 
   // axios
@@ -117,14 +140,9 @@ function Internship() {
   return (
     <>
       <Container>
-        <ul>
-          <li>
-            <h2 />
-          </li>
-        </ul>
+        {internshipData.map(el => <Card name={el.name} start={el.start} expiration={el.expiration} />)}
       </Container>
     </>
   )
 }
-
 export default Internship

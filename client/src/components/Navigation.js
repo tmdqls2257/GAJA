@@ -36,16 +36,27 @@ const StyledLink = styled(Link)`
     }
 `
 
-const Navigation = ({ isLogin }) => {
+const Navigation = ({ isLogin, setIsLogin, setAccessToken}) => {
+
+  const logoutHandler = () => {
+    setIsLogin(false)
+    setAccessToken('')
+  }
   return (
     <>
       <Container>
+        {!isLogin ?
+        <>
         <StyledLink to='/login'>
           <div>로그인</div>
         </StyledLink>
         <StyledLink to='/login'>
           <div>회원가입</div>
         </StyledLink>
+        </>
+        : 
+        <div onClick={logoutHandler}>로그아웃</div>
+      }
       </Container>
     </>
   )

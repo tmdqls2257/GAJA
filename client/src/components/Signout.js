@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import Modal from './Modal'
 
 export const Container = styled.button`
@@ -12,8 +12,7 @@ export const Container = styled.button`
   border-width: 0px;
 `
 
-function Signout({ accessToken }) {
-
+function Signout ({ accessToken }) {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
 

@@ -116,6 +116,7 @@ const Login = ({ setIsLogin, setAccessToken }) => {
             setOpenModal(true)
             setIsLogin(true)
             setAccessToken(accessToken)
+            localStorage.setItem('authenticated', accessToken)
           })
           .catch(err => {
             const { message } = err.response.data

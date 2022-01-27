@@ -8,10 +8,10 @@ export const Box = styled.div`
   height: 950px;
 `
 
-function Main ({ accessToken, isLogin }) {
+function Main ({ accessToken, isLogin, setIsLogin, setAccessToken }) {
   return (
     <>
-      <Header isLogin={isLogin} />
+      <Header isLogin={isLogin} setIsLogin={setIsLogin} setAccessToken={setAccessToken} />
       <Box>
         <Menu accessToken={accessToken} isLogin={isLogin} />
       </Box>
