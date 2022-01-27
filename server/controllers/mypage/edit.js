@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
   const options = { multi: true }
 
   await Users.update({
-    userName, email, password
+    password
   }, condition, options).then(data => {
     console.log()
     if (data == 1) {

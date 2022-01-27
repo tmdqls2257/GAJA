@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 import styled from 'styled-components'
 import Myinfo from './Myinfo'
 import Changepassword from './Changepassword'
 import Managelicense from './Managelicense'
 import Signout from './Signout'
-import axios from 'axios'
 
 export const Container = styled.div`
   max-width: 100vw;
@@ -71,13 +71,31 @@ export const List = styled.div`
   }
 `
 
-function Mypage ({ accessToken, isLogin }) {
+function Mypage({ accessToken, isLogin }) {
   const [currentTab, setcurrentTab] = useState(0)
+  const [licenseList, setLicenseList] = useState([])
   const list = [
     <Myinfo accessToken={accessToken} />,
-    <Managelicense accessToken={accessToken} />,
+    <Managelicense accessToken={accessToken} licenseList={licenseList} />,
     <Changepassword accessToken={accessToken} />,
     <Signout accessToken={accessToken} />]
+
+  useEffect(() => {
+    axios
+      .get('https://localhost:4000/mypage/mypage',
+        {
+          headers: { Authorization: `accessToken=${accessToken}` },
+          'Content-Type': 'application/json',
+          withCredentials: true
+        })
+      .then((response) => {
+        setLicenseList(response.data.data.license)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // {
   //   "data": {
@@ -90,22 +108,6 @@ function Mypage ({ accessToken, isLogin }) {
   //   },
   //   "message": "마이페이지"
   // }
-
-  let userInfo
-
-  axios
-    .get('https://localhost:4000/mypage/mypage',
-      {
-        headers: { Authorization: accessToken },
-        'Content-Type': 'application/json',
-        withCredentials: true
-      })
-    .then((res) => {
-      userInfo = res.data.userInfo
-    })
-    .catch((err) => {
-      throw err
-    })
 
   const selectMenuHandler = (index) => {
     setcurrentTab(index)

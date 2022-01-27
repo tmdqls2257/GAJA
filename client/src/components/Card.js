@@ -17,6 +17,7 @@ const Container = styled.div`
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
 `
+
 const Head = styled.div`
   position: absolute;
   background: #2573ef;
@@ -32,8 +33,8 @@ const Head = styled.div`
   font-size: 40px;
 `
 
+
 const Card = ({ name, start, expiration }) => {
-  // const
   return (
     <Container>
       <Head>D + 3</Head>

@@ -76,11 +76,12 @@ const Modal = ({ setOpenModal, modalText }) => {
   useEffect(() => {
     if (modalText === '회원가입이 필요합니다.') {
       setPath('/signup')
-    } else if (modalText === '로그인 되었습니다.') {
+    } else if (modalText === '로그인 되었습니다.' || modalText === '이용해주셔서 감사합니다.') {
       setPath('/main')
     } else if (modalText === '이미 등록되어 있는 계정입니다.' || modalText === '회원가입 되었습니다.') {
       setPath('/login')
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []) //! Too many re-render가 나오면 useEffect 사용을 고려해보자
 
   return (
