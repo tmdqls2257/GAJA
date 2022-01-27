@@ -75,7 +75,7 @@ function Mypage({ accessToken, isLogin }) {
   const [currentTab, setcurrentTab] = useState(0)
   const [licenseList, setLicenseList] = useState([])
   const list = [
-    <Myinfo accessToken={accessToken} />,
+    <Myinfo accessToken={accessToken} licenseList={licenseList} />,
     <Managelicense accessToken={accessToken} licenseList={licenseList} />,
     <Changepassword accessToken={accessToken} />,
     <Signout accessToken={accessToken} />]

@@ -33,7 +33,7 @@ export const Profile = styled.div`
   `
 
 // props로 이름이랑 이메일 받아오면 NAME: {name}, E-MAIL: {email} 형식으로 바꾼다.
-function Myinfo({ accessToken }) {
+function Myinfo({ accessToken, licenseList}) {
 
   const [userName, setUserName] = useState('')
   const [email, setEmail] = useState('')
@@ -86,7 +86,7 @@ function Myinfo({ accessToken }) {
             </div>
           </Profile>
         </Information>
-        <License accessToken={accessToken} />
+        <License accessToken={accessToken} licenseList={licenseList} />
       </MyInfo>
     </>
   )
