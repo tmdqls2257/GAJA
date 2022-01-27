@@ -32,11 +32,8 @@ const Head = styled.div`
   font-size: 40px;
 `
 
-
-
-
 const Card = ({name, start, expiration}) => {
-    const 
+    // const 
     return (
       <Container>
         <Head>D + 3</Head>
