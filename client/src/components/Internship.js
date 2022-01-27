@@ -4,6 +4,11 @@ import styled from 'styled-components'
 import Card from './Card'
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
 `
 
 // {
@@ -65,7 +70,8 @@ export const Container = styled.div`
 // }
 
 function Internship() {
-  const [internshipData, setIntershipData] = useState([])
+  const [internshipData1, setIntershipData1] = useState([])
+  const [internshipData2, setIntershipData2] = useState([])
 
   // ------------- timestamp 를 dateTime 으로 바꾸는 function 입니다 -------------
   const convertUnix = (timestamp) => {
@@ -102,16 +108,24 @@ function Internship() {
       .then((res) => {
         const saraminData = res.data.data
 
-        const internshipList = saraminData.slice(0, 8) // length가 8인 배열
-        const data = internshipList.map((internship) => { // length가 8인 배열
+        const internshipList1 = saraminData.slice(0, 4) // length가 4인 배열
+        const data1 = internshipList1.map((internship) => { // length가 4인 배열
           return {
             name: internship.company.detail.name,
             start: convertUnix(Number(internship['opening-timestamp'])),
             expiration: convertUnix(Number(internship['expiration-timestamp']))
           }
         })
-        setIntershipData(data)
-        console.log(data)
+        const internshipList2 = saraminData.slice(4, 8) // length가 4인 배열
+        const data2 = internshipList2.map((internship) => { // length가 4인 배열
+          return {
+            name: internship.company.detail.name,
+            start: convertUnix(Number(internship['opening-timestamp'])),
+            expiration: convertUnix(Number(internship['expiration-timestamp']))
+          }
+        })
+        setIntershipData1(data1)
+        setIntershipData2(data2)
       })
       .catch((error) => {
         console.log(error)
@@ -140,7 +154,12 @@ function Internship() {
   return (
     <>
       <Container>
-        {internshipData.map(el => <Card name={el.name} start={el.start} expiration={el.expiration} />)}
+        <div>
+          {internshipData1.map(el => <Card name={el.name} start={el.start} expiration={el.expiration} />)}
+        </div>
+        <div>
+          {internshipData2.map(el => <Card name={el.name} start={el.start} expiration={el.expiration} />)}
+        </div>
       </Container>
     </>
   )
