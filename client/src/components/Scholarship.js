@@ -4,6 +4,19 @@ import styled from 'styled-components'
 import Card from './Card'
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -1.2rem;
+`
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
 `
 
 // {
@@ -65,34 +78,22 @@ export const Container = styled.div`
 // }
 
 function Scholarship() {
-  const [scholarshipData, setScholarshipData] = useState([])
+  const [scholarshipData1, setScholarshipData1] = useState([])
+  const [scholarshipData2, setScholarshipData2] = useState([])
 
-  // ------------- timestamp 를 dateTime 으로 바꾸는 function 입니다 -------------
-  const convertUnix = (timestamp) => {
-    const time = new Date(timestamp * 1000)
-    const year = time.getFullYear()
-    const month = time.getMonth() + 1
-    const date = time.getDate()
-    return `${year}-${month}-${date}`
+  // ------------ date 를 입력하면 D-Day를 반환하는 function 입니다 ------------
+  // date 는 String 타입으로 넣어주셔야 합니다! (예: '2022-01-31')
+  const getDday = (dateTime) => {
+    var convert = dateTime.split('-');
+    var year = Number(convert[0])
+    var month = Number(convert[1])
+    var date = Number(convert[2])
+    var Dday = new Date(year, month - 1, date);
+    var now = new Date();
+    var gap = now.getTime() - Dday.getTime();
+    var result = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
+    return result;
   }
-  // ------------------------------------------------------------------------
-
-  // ------------ timestamp 를 입력하면 D-Day를 반환하는 function 입니다 ------------
-  // Number 타입이면서 unix 형태의 timestamp 를 넣어주셔야합니다!
-  // 예를 들어, getDday(1648393199) 를 입력하면 59 가 출력이 됩니다.
-  // 1648393199(Unix) <-> '2022-3-27'(Date) --> 오늘로부터 59일 남음!
-
-  // const getDday = (timestamp) => {
-  //   var time = new Date(timestamp * 1000);
-  //   let year = time.getFullYear();
-  //   let month = time.getMonth() + 1;
-  //   let date = time.getDate();
-  //   var Dday = new Date(year, month-1, date);
-  //   var now = new Date();
-  //   var gap = now.getTime() - Dday.getTime();
-  //   var result = Math.floor(gap/(1000*60*60*24))*-1;
-  //   return result;
-  // }
   // -------------------------------------------------------------------------
   // let scholarshipData // 객체 {name, start, expiration}을 요소로 갖는 length 8의 배열
 
@@ -102,16 +103,26 @@ function Scholarship() {
       .then((res) => {
         const saraminData = res.data.data.data
 
-        const scholarshipList = saraminData.slice(0, 8) // length가 8인 배열
-        const data = scholarshipList.map((scholarship) => { // length가 8인 배열
+        const scholarshipList1 = saraminData.slice(0, 4) // length가 8인 배열
+        const data1 = scholarshipList1.map((scholarship) => { // length가 8인 배열
           return {
             name: scholarship.장학사업명,
             start: scholarship.신청시작일자,
-            expiration: scholarship.신청종료일자
+            expiration: scholarship.신청종료일자,
+            day: getDday(scholarship.신청종료일자)
           }
         })
-        setScholarshipData(data)
-        console.log(data)
+        const scholarshipList2 = saraminData.slice(4, 8) // length가 8인 배열
+        const data2 = scholarshipList2.map((scholarship) => { // length가 8인 배열
+          return {
+            name: scholarship.장학사업명,
+            start: scholarship.신청시작일자,
+            expiration: scholarship.신청종료일자,
+            day: getDday(scholarship.신청종료일자)
+          }
+        })
+        setScholarshipData1(data1)
+        setScholarshipData2(data2)
       })
       .catch((error) => {
         console.log(error)
@@ -121,7 +132,26 @@ function Scholarship() {
   return (
     <>
       <Container>
-        {scholarshipData.map(el => <Card name={el.name} start={el.start} expiration={el.expiration} />)}
+        <div>
+          <Box>
+            {scholarshipData1.map((el) =>
+              <Card name={el.name}
+                start={el.start}
+                expiration={el.expiration}
+                day={el.day * -1}
+                symbol={'+'} />)}
+          </Box>
+        </div>
+        <div>
+          <Box>
+            {scholarshipData2.map((el) =>
+              <Card name={el.name}
+                start={el.start}
+                expiration={el.expiration}
+                day={el.day * -1}
+                symbol={'+'} />)}
+          </Box>
+        </div>
       </Container>
     </>
   )

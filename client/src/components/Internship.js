@@ -87,7 +87,7 @@ function Internship() {
     const year = time.getFullYear()
     const month = time.getMonth() + 1
     const date = time.getDate()
-    return `${year}-${month}-${date}`
+    return `${year}.${month}.${date}`
   }
   // ------------------------------------------------------------------------
 
@@ -96,17 +96,17 @@ function Internship() {
   // 예를 들어, getDday(1648393199) 를 입력하면 59 가 출력이 됩니다.
   // 1648393199(Unix) <-> '2022-3-27'(Date) --> 오늘로부터 59일 남음!
 
-  // const getDday = (timestamp) => {
-  //   var time = new Date(timestamp * 1000);
-  //   let year = time.getFullYear();
-  //   let month = time.getMonth() + 1;
-  //   let date = time.getDate();
-  //   var Dday = new Date(year, month-1, date);
-  //   var now = new Date();
-  //   var gap = now.getTime() - Dday.getTime();
-  //   var result = Math.floor(gap/(1000*60*60*24))*-1;
-  //   return result;
-  // }
+  const getDday = (timestamp) => {
+    var time = new Date(timestamp * 1000);
+    let year = time.getFullYear();
+    let month = time.getMonth() + 1;
+    let date = time.getDate();
+    var Dday = new Date(year, month - 1, date);
+    var now = new Date();
+    var gap = now.getTime() - Dday.getTime();
+    var result = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
+    return result;
+  }
   // -------------------------------------------------------------------------
   // let internshipData // 객체 {name, start, expiration}을 요소로 갖는 length 8의 배열
 
@@ -121,7 +121,8 @@ function Internship() {
           return {
             name: internship.company.detail.name,
             start: convertUnix(Number(internship['opening-timestamp'])),
-            expiration: convertUnix(Number(internship['expiration-timestamp']))
+            expiration: convertUnix(Number(internship['expiration-timestamp'])),
+            day: getDday(Number(internship['expiration-timestamp']))
           }
         })
         const internshipList2 = saraminData.slice(4, 8) // length가 4인 배열
@@ -129,7 +130,8 @@ function Internship() {
           return {
             name: internship.company.detail.name,
             start: convertUnix(Number(internship['opening-timestamp'])),
-            expiration: convertUnix(Number(internship['expiration-timestamp']))
+            expiration: convertUnix(Number(internship['expiration-timestamp'])),
+            day: getDday(Number(internship['expiration-timestamp']))
           }
         })
         setIntershipData1(data1)
@@ -164,12 +166,22 @@ function Internship() {
       <Container>
         <div>
           <Box>
-            {internshipData1.map(el => <Card name={el.name} start={el.start} expiration={el.expiration} />)}
+            {internshipData1.map((el) =>
+              <Card name={el.name}
+                start={el.start}
+                expiration={el.expiration}
+                day={el.day}
+                symbol={'-'} />)}
           </Box>
         </div>
         <div>
           <Box>
-            {internshipData2.map(el => <Card name={el.name} start={el.start} expiration={el.expiration} />)}
+            {internshipData2.map((el) =>
+              <Card name={el.name}
+                start={el.start}
+                expiration={el.expiration}
+                day={el.day}
+                symbol={'-'} />)}
           </Box>
         </div>
         <div className='page_number'>{'◁ ◀ 1 2 3 4 5 ▶ ▷'}</div>

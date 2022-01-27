@@ -36,19 +36,19 @@ const Head = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
+  font-size: 25px;
   font-weight: bold;
 `
 
 
-const Card = ({ name, start, expiration }) => {
+const Card = ({ name, start, expiration, day, symbol }) => {
   return (
     <Container>
       <Head>
-        <span className='D-day'>D + 3</span>
+        <span className='D-day'>{`D ${symbol} ${day}`}</span>
       </Head>
-      <span className='internship_title'>한국장학재단</span>
-      <span className='internship_expiration'>2020.12.12 ~ 2021.1.1</span>
+      <span className='internship_title'>{name}</span>
+      <span className='internship_expiration'>{start} ~ {expiration}</span>
     </Container>
   )
 }
