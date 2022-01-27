@@ -26,6 +26,7 @@ function Signout({ accessToken }) {
   }
 
   const handleSignout = () => {
+
     axios
       .get('https://localhost:4000/mypage/mypage', {
         headers: {
@@ -41,7 +42,6 @@ function Signout({ accessToken }) {
       .catch((error) => {
         throw error
       })
-<<<<<<< HEAD
 
     axios
       .post('https://localhost:4000/user/signout',
@@ -64,8 +64,6 @@ function Signout({ accessToken }) {
       .catch((error) => {
         console.log(error)
       })
-=======
->>>>>>> 72ba68815a2e5bfa30709fe49a7838fb42dcc80b
   }
 
   return (
