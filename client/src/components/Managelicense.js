@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import License from './License'
+import Modal from './Modal'
 
 export const ManageLicense = styled.div`
   display: flex;
@@ -12,12 +13,14 @@ export const ManageLicense = styled.div`
 
 export const Add = styled.div`
   display: flex;
-  width: 100%;
   margin-left: 1.3rem;
   flex-direction: column;
 `
 
 function Managelicense({ accessToken, licenseList }) {
+  const [openModal, setOpenModal] = useState(false)
+  const [modalText, setModalText] = useState('')
+
   const [licenseName, setLicenseName] = useState('')
   const [expiration, setExpiration] = useState('')
 
@@ -55,28 +58,13 @@ function Managelicense({ accessToken, licenseList }) {
 
   const handleSubmit = () => {
     setSubmit(true)
-    axios
-      .post('https://localhost:4000/mypage/memo',
-        {
-          name: licenseName,
-          expiration: expiration
-        },
-        {
-          headers: { Authorization: `accessToken=${accessToken}` },
-          'Content-Type': 'application/json',
-          withCredentials: true
-        }
-      )
-      .then((response) => {
-        console.log(response)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    setModalText('자격증이 등록되었습니다.')
+    setOpenModal(true)
   }
 
   return (
     <>
+      {openModal ? <Modal setOpenModal={setOpenModal} modalText={modalText} /> : null}
       <ManageLicense>
         <h1 className='title'>자격증 관리 ＞</h1>
         <License licenseList={licenseList} />
@@ -92,7 +80,7 @@ function Managelicense({ accessToken, licenseList }) {
             <input
               id='new_license_name'
               className='new_license_name'
-              placeholder=' 자격증 종류를 입력해주세요.'
+              placeholder='자격증 종류를 입력해주세요.'
               onChange={(e) => handleLicense(e)}
             />
           </div>
@@ -103,7 +91,7 @@ function Managelicense({ accessToken, licenseList }) {
             <input
               type='date'
               className='new_license_expiration'
-              placeholder=' 자격증의 만료 기간을 입력해주세요.'
+              placeholder='자격증의 만료 기간을 입력해주세요.'
               onChange={(e) => handleExpiration(e)}
             />
           </div>

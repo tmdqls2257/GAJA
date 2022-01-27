@@ -76,11 +76,11 @@
 .new_license_name {
   width: 201px;
   height: 22px;
-  margin: auto;
-  margin-left: 15px;
   margin-bottom: 20px;
   margin-top: -4px;
+  margin-left: -50rem;
   float: right;
+  padding: 12px 12px;
 }
 
 .new_license_expiration {
@@ -88,11 +88,10 @@
   font-family: Arial, sans-serif;
   font-size: 14px;
   height: 22px;
-  margin: auto;
-  margin-left: 15px;
   margin-bottom: 20px;
   margin-top: -4px;
   float: right;
+  padding: 12px 12px;
 }
 
 .license_add_button {
@@ -162,4 +161,26 @@
   margin-top: 2rem;
   margin-left: 20px;
   /* margin-bottom: 20px; */
+}
+
+#license_expiration {
+  font-weight: bold;
+  font-size: 12px;
+  text-align: right;
+  margin-top: -2.65rem;
+  margin-left: 400px;
+}
+
+.D-day {
+  margin-top: 0.4rem;
+}
+
+.internship_expiration {
+  margin-top: 1.5rem;
+}
+
+.internship_title {
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: 5rem;
 }

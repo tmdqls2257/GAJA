@@ -16,6 +16,7 @@ export const List = styled.div`
   margin: auto;
   margin-left: 40px;
   margin-top: -20px;
+  margin-bottom: 1.5rem;
   align-items: flex-start;
   justify-content: flex-start;
   line-height: 40px;
@@ -55,7 +56,7 @@ function License({ accessToken, licenseList }) {
                 licenseList.map((el, idx) => {
                   return (<li key={idx}>
                     <span id='license_name'> {el.name}</span>
-                    <span id='license_expiration'> {el.expiration}</span>
+                    <div id='license_expiration'> {el.expiration}</div>
                   </li>)
                 }) : <span>자격증을 등록해주세요.</span>}
             </ul>
