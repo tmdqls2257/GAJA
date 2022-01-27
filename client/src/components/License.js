@@ -21,15 +21,15 @@ export const List = styled.div`
 `
 
 // props 로 License 리스트를 받아오면 map 메소드를 이용하여 나열하도록 한다.
-function License({ accessToken }) {
-
-  let licenseList = []
+function License ({ accessToken }) {
+  const licenseList = []
 
   axios
     .get('https://localhost:4000/mypage/mypage',
       {
         headers: { Authorization: `accessToken=${accessToken}` },
-        'Content-Type': 'application/json', withCredentials: true
+        'Content-Type': 'application/json',
+        withCredentials: true
       })
     .then((response) => {
       licenseList = response.data.data.license
@@ -38,7 +38,6 @@ function License({ accessToken }) {
       console.log(error)
     })
 
-
   return (
     <>
       <Current>
@@ -46,7 +45,7 @@ function License({ accessToken }) {
           <h3 id='current'><span className='check'>&#10003;</span> 자격증 보유 현황</h3>
           <List>
             <ul>
-              {/* {licenseList.map((license) => 
+              {/* {licenseList.map((license) =>
                 <li>
                   <span id='license_name'>license.name</span>
                   <span id='license_expiration'>license.expiration</span>

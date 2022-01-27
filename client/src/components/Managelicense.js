@@ -16,7 +16,7 @@ export const Add = styled.div`
   flex-direction: column;
 `
 
-function Managelicense({ accessToken }) {
+function Managelicense ({ accessToken }) {
   const [licenseName, setLicenseName] = useState('')
   const [expiration, setExpiration] = useState('')
 
@@ -37,7 +37,8 @@ function Managelicense({ accessToken }) {
         },
         {
           headers: { Authorization: `accessToken=${accessToken}` },
-          'Content-Type': 'application/json', withCredentials: true
+          'Content-Type': 'application/json',
+          withCredentials: true
         }
       )
       .then((response) => {

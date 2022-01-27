@@ -10,7 +10,7 @@ export const ChangePassword = styled.div`
   flex-direction: column;
 `
 
-function Changepassword({ accessToken }) {
+function Changepassword ({ accessToken }) {
   const [openModal, setOpenModal] = useState(false)
   const [modalText, setModalText] = useState('')
 
@@ -88,7 +88,8 @@ function Changepassword({ accessToken }) {
           },
           {
             headers: { Authorization: `accessToken=${accessToken}` },
-            'Content-Type': 'application/json', withCredentials: true
+            'Content-Type': 'application/json',
+            withCredentials: true
           })
         .catch((error) => {
           console.log(error)

@@ -71,7 +71,7 @@ export const List = styled.div`
   }
 `
 
-function Mypage({ accessToken, isLogin }) {
+function Mypage ({ accessToken, isLogin }) {
   const [currentTab, setcurrentTab] = useState(0)
   const list = [
     <Myinfo accessToken={accessToken} />,
@@ -91,13 +91,14 @@ function Mypage({ accessToken, isLogin }) {
   //   "message": "마이페이지"
   // }
 
-  let userInfo;
+  let userInfo
 
   axios
     .get('https://localhost:4000/mypage/mypage',
       {
         headers: { Authorization: accessToken },
-        'Content-Type': 'application/json', withCredentials: true
+        'Content-Type': 'application/json',
+        withCredentials: true
       })
     .then((res) => {
       userInfo = res.data.userInfo
