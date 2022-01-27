@@ -32,7 +32,7 @@ function License({ accessToken }) {
         'Content-Type': 'application/json', withCredentials: true
       })
     .then((response) => {
-      // console.log(response)
+      licenseList = response.data.data.license
     })
     .catch((error) => {
       console.log(error)

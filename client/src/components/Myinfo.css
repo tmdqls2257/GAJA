@@ -32,7 +32,7 @@
   border-width: 4px;
   font-size: 20px;
   padding: 10px 30px;
-  margin-top: 2rem;
+  margin-top: 3rem;
   margin-left: 0rem;
   border-radius: 100px;
   cursor: pointer;
@@ -153,4 +153,13 @@
   padding: 10px 30px;
   border-radius: 100px;
   cursor: pointer;
+}
+
+.signout_box {
+  width: 220px;
+  height: 20px;
+  padding: 12px 12px;
+  margin-top: 2rem;
+  margin-left: 20px;
+  /* margin-bottom: 20px; */
 }
