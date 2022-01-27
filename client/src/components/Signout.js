@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import Modal from './Modal'
 
 export const Container = styled.button`
@@ -11,15 +11,14 @@ export const Container = styled.button`
   border-width: 0px;
 `
 
-function Signout({ accessToken }) {
-
+function Signout ({ accessToken }) {
   const [password, setPassword] = useState('')
 
   const [openModal, setOpenModal] = useState(false)
   const [modalText, setModalText] = useState('')
 
-  let username;
-  let email;
+  let username
+  let email
 
   const handlePassword = (e) => {
     setPassword(e.target.value)
