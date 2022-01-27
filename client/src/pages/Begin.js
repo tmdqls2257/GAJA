@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import gaja from '../images/logo.png'
-import background from '../images/begin_background.jpeg'
 import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
@@ -74,7 +73,7 @@ const StyledLink = styled(Link)`
     }
 `
 
-function Begin () {
+function Begin() {
   return (
     <>
       <Container>

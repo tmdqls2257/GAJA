@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import Modal from './Modal'
 
@@ -10,26 +11,10 @@ export const ChangePassword = styled.div`
   flex-direction: column;
 `
 
-function Changepassword ({ accessToken }) {
+function Changepassword({ accessToken }) {
   const [openModal, setOpenModal] = useState(false)
   const [modalText, setModalText] = useState('')
-
-  let email
-
-  axios
-    .get('https://localhost:4000/mypage/mypage', {
-      headers: {
-        Authorization: `accessToken=${accessToken}`,
-        'Content-Type': 'application/json'
-      },
-      withCredentials: true
-    })
-    .then((response) => {
-      email = (response.data.data.userInfo.email)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  const [email, setEmail] = useState('')
 
   const [original, setOriginal] = useState('')
   const [change, setChange] = useState('')
@@ -38,6 +23,27 @@ function Changepassword ({ accessToken }) {
   const [oriCorrect, setOriCorrect] = useState(true)
   const [chgCorrect, setChgCorrect] = useState(true)
   const [chkCorrect, setChkCorrect] = useState(true)
+
+  const [getData, setGetData] = useState(false)
+
+  // 마이페이지를 통해 state 에 email 을 저장
+  useEffect(() => {
+    axios
+      .get('https://localhost:4000/mypage/mypage', {
+        headers: {
+          Authorization: `accessToken=${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      })
+      .then((response) => {
+        setEmail(response.data.data.userInfo.email)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleOriginal = (e) => {
     setOriginal(e.target.value)
@@ -76,25 +82,25 @@ function Changepassword ({ accessToken }) {
         console.log(error)
       })
 
+    axios
+      .post('https://localhost:4000/mypage/mypage/1',
+        {
+          password: change
+        },
+        {
+          headers: { Authorization: `accessToken=${accessToken}` },
+          'Content-Type': 'application/json',
+          withCredentials: true
+        })
+      .catch((error) => {
+        console.log(error)
+      })
+
     // if (original !== testPassword) { setOriCorrect(false) } else { setOriCorrect(true) }
     if (change === original) { setChgCorrect(false) } else { setChgCorrect(true) }
     if (check !== change) { setChkCorrect(false) } else { setChkCorrect(true) }
 
     if (oriCorrect && chgCorrect && chkCorrect) {
-      axios
-        .post('https://localhost:4000/mypage/mypage/1',
-          {
-            password: change
-          },
-          {
-            headers: { Authorization: `accessToken=${accessToken}` },
-            'Content-Type': 'application/json',
-            withCredentials: true
-          })
-        .catch((error) => {
-          console.log(error)
-        })
-
       setModalText('비밀번호가 변경되었습니다.')
       setOpenModal(true)
     }

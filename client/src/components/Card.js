@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -35,15 +35,14 @@ const Head = styled.div`
 
 
 
-const Card = ({name, start, expiration}) => {
-    const 
-    return (
-      <Container>
-        <Head>D + 3</Head>
-        <h1>한국장학재단</h1>
-        <div>2020.12.12 ~ 2021.1.1</div>
-      </Container>
-    )
+const Card = ({ name, start, expiration }) => {
+  return (
+    <Container>
+      <Head>D + 3</Head>
+      <h1>한국장학재단</h1>
+      <div>2020.12.12 ~ 2021.1.1</div>
+    </Container>
+  )
 }
 
 export default Card

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components';
 import Modal from './Modal'
@@ -14,19 +15,14 @@ export const Container = styled.button`
 function Signout({ accessToken }) {
 
   const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
 
   const [openModal, setOpenModal] = useState(false)
   const [modalText, setModalText] = useState('')
 
-  let username;
-  let email;
+  const [goSignOut, setGoSignOut] = useState(false)
 
-  const handlePassword = (e) => {
-    setPassword(e.target.value)
-  }
-
-  const handleSignout = () => {
-
+  useEffect(() => {
     axios
       .get('https://localhost:4000/mypage/mypage', {
         headers: {
@@ -36,19 +32,20 @@ function Signout({ accessToken }) {
         withCredentials: true
       })
       .then((response) => {
-        username = response.data.data.userInfo.userName
-        email = response.data.data.userInfo.email
+        setEmail(response.data.data.userInfo.email)
       })
       .catch((error) => {
         throw error
       })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
+  useEffect(() => {
     axios
       .post('https://localhost:4000/user/signout',
         {
-          username: username,
-          password: password,
-          email: email
+          email: email,
+          password: password
         },
         {
           headers: {
@@ -64,10 +61,20 @@ function Signout({ accessToken }) {
       .catch((error) => {
         console.log(error)
       })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [goSignOut])
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value)
+  }
+
+  const handleSignout = () => {
+    setGoSignOut(true)
   }
 
   return (
     <>
+      {openModal ? <Modal setOpenModal={setOpenModal} modalText={modalText} /> : null}
       <h1 className='title'>회원탈퇴 ＞</h1>
       <div>
         <label

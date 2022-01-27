@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import License from './License'
 
@@ -16,9 +17,33 @@ export const Add = styled.div`
   flex-direction: column;
 `
 
-function Managelicense ({ accessToken }) {
+function Managelicense({ accessToken, licenseList }) {
   const [licenseName, setLicenseName] = useState('')
   const [expiration, setExpiration] = useState('')
+
+  const [submit, setSubmit] = useState(false)
+
+  useEffect(() => {
+    axios
+      .post('https://localhost:4000/mypage/memo',
+        {
+          name: licenseName,
+          expiration: expiration
+        },
+        {
+          headers: { Authorization: `accessToken=${accessToken}` },
+          'Content-Type': 'application/json',
+          withCredentials: true
+        }
+      )
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [submit])
 
   const handleLicense = (e) => {
     setLicenseName(e.target.value)
@@ -29,6 +54,7 @@ function Managelicense ({ accessToken }) {
   }
 
   const handleSubmit = () => {
+    setSubmit(true)
     axios
       .post('https://localhost:4000/mypage/memo',
         {
@@ -53,8 +79,7 @@ function Managelicense ({ accessToken }) {
     <>
       <ManageLicense>
         <h1 className='title'>자격증 관리 ＞</h1>
-        <License />
-        <br />
+        <License licenseList={licenseList} />
         <h3 id='current'><span className='check'>&#10003;</span> 자격증 입력</h3>
         <Add>
           <div>
