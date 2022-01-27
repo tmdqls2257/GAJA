@@ -9,7 +9,7 @@
 <br></br>
 
 # System Architecture
-<img src='https://cdn.discordapp.com/attachments/932852459003609098/933586875707428924/Web_App_Reference_Architecture_1.png'width="30%">
+<img src='https://cdn.discordapp.com/attachments/932852459003609098/933586875707428924/Web_App_Reference_Architecture_1.png' width="30%">
 <br></br>
 
 # Front-end tech stacks
