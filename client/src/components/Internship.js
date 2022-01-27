@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import Card from './Card'
 
 export const Container = styled.div`
-
 `
 
 // {
@@ -65,7 +64,7 @@ export const Container = styled.div`
 //   }
 // }
 
-function Internship () {
+function Internship() {
   const [internshipData, setIntershipData] = useState([])
 
   // ------------- timestamp 를 dateTime 으로 바꾸는 function 입니다 -------------

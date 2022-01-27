@@ -19,27 +19,33 @@ const Container = styled.div`
 `
 
 const Head = styled.div`
+  text-align: center;
   position: absolute;
   background: #2573ef;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  margin: auto;
+  margin-bottom: -2rem;
   top: 0;
-  height: 70px;
+  height: 75px;
   width: 100%;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 40px;
+  font-weight: bold;
 `
 
 
 const Card = ({ name, start, expiration }) => {
   return (
     <Container>
-      <Head>D + 3</Head>
-      <h1>한국장학재단</h1>
-      <div>2020.12.12 ~ 2021.1.1</div>
+      <Head>
+        <span className='D-day'>D + 3</span>
+      </Head>
+      <span className='internship_title'>한국장학재단</span>
+      <span className='internship_expiration'>2020.12.12 ~ 2021.1.1</span>
     </Container>
   )
 }
