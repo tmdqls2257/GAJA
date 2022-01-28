@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import License from './License'
 import styled from 'styled-components'
 import profile from '../images/profile.png'
@@ -29,19 +29,34 @@ export const Profile = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   line-height: 25px;
+  margin-top: -1rem;
   `
 
 // props로 이름이랑 이메일 받아오면 NAME: {name}, E-MAIL: {email} 형식으로 바꾼다.
-function Myinfo ({ accessToken }) {
+function Myinfo({ accessToken, licenseList }) {
+
   const [userName, setUserName] = useState('')
   const [email, setEmail] = useState('')
-  const [license, setLicense] = useState([])
 
-  // axios
-  //   .get('http://localhost:4000/mypage/mypage',
-  //     {
-  //       headers: { authorization }
-  //     })
+  // console.log(accessToken)
+
+  useEffect(() => {
+    axios
+      .get('https://localhost:4000/mypage/mypage',
+        {
+          headers: { Authorization: `accessToken=${accessToken}` },
+          'Content-Type': 'application/json', withCredentials: true
+        })
+      .then((response) => {
+        console.log(response)
+        setUserName(response.data.data.userInfo.userName)
+        setEmail(response.data.data.userInfo.email)
+      })
+      .catch((error) => {
+        // console.log(error)
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
@@ -51,27 +66,27 @@ function Myinfo ({ accessToken }) {
           <img
             src={profile}
             className='profile'
-            alt='Profile Image'
+            alt='Profile'
             width='17%'
           />
           <Profile>
             <div>
               <h2 id='greet'>
                 어서오세요,
-                <span id='user'> OOO</span> 님!
+                <span id='user'> {userName}</span> 님!
               </h2>
               <div className='item'>
                 NAME:
-                <span id='user_name'> 이름</span>
+                <span id='user_name'> {userName}</span>
               </div>
               <div className='item'>
                 E-MAIL:
-                <span id='user_email'> 이메일</span>
+                <span id='user_email'> {email}</span>
               </div>
             </div>
           </Profile>
         </Information>
-        <License />
+        <License accessToken={accessToken} licenseList={licenseList} />
       </MyInfo>
     </>
   )

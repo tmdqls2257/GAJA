@@ -1,5 +1,8 @@
+import axios from 'axios'
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
+import Modal from './Modal'
 
 export const ChangePassword = styled.div`
   display: flex;
@@ -8,7 +11,11 @@ export const ChangePassword = styled.div`
   flex-direction: column;
 `
 
-function Changepassword ({ accessToken }) {
+function Changepassword({ accessToken }) {
+  const [openModal, setOpenModal] = useState(false)
+  const [modalText, setModalText] = useState('')
+  const [email, setEmail] = useState('')
+
   const [original, setOriginal] = useState('')
   const [change, setChange] = useState('')
   const [check, setCheck] = useState('')
@@ -17,7 +24,26 @@ function Changepassword ({ accessToken }) {
   const [chgCorrect, setChgCorrect] = useState(true)
   const [chkCorrect, setChkCorrect] = useState(true)
 
-  const testPassword = '1234'
+  const [getData, setGetData] = useState(false)
+
+  // 마이페이지를 통해 state 에 email 을 저장
+  useEffect(() => {
+    axios
+      .get('https://localhost:4000/mypage/mypage', {
+        headers: {
+          Authorization: `accessToken=${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      })
+      .then((response) => {
+        setEmail(response.data.data.userInfo.email)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleOriginal = (e) => {
     setOriginal(e.target.value)
@@ -37,13 +63,52 @@ function Changepassword ({ accessToken }) {
     // 변경 비밀번호와 비밀번호 확인이 일치하는지 검토하고
     // 모든 정보가 일치하면 비밀번호를 변경하도록 한다.
     // 비밀번호는 4자리 이상, 20자리 이하로 입력해야한다.
-    if (original !== testPassword) { setOriCorrect(false) } else { setOriCorrect(true) }
-    if (change === testPassword) { setChgCorrect(false) } else { setChgCorrect(true) }
+    axios
+      .post('https://localhost:4000/user/login',
+        {
+          email: email,
+          password: original
+        },
+        { 'Content-Type': 'application/json', withCredentials: true }
+      )
+      .then((res) => {
+        if (res.message === '비밀번호를 확인해주세요') {
+          setOriCorrect(false)
+        } else {
+          setOriCorrect(true)
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+    axios
+      .post('https://localhost:4000/mypage/mypage/1',
+        {
+          password: change
+        },
+        {
+          headers: { Authorization: `accessToken=${accessToken}` },
+          'Content-Type': 'application/json',
+          withCredentials: true
+        })
+      .catch((error) => {
+        console.log(error)
+      })
+
+    // if (original !== testPassword) { setOriCorrect(false) } else { setOriCorrect(true) }
+    if (change === original) { setChgCorrect(false) } else { setChgCorrect(true) }
     if (check !== change) { setChkCorrect(false) } else { setChkCorrect(true) }
+
+    if (oriCorrect && chgCorrect && chkCorrect) {
+      setModalText('비밀번호가 변경되었습니다.')
+      setOpenModal(true)
+    }
   }
 
   return (
     <>
+      {openModal ? <Modal setOpenModal={setOpenModal} modalText={modalText} /> : null}
       <ChangePassword>
         <h1 className='title'>비밀번호 변경 ＞</h1>
         <div>

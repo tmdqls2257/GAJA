@@ -14,9 +14,10 @@ export const Search = styled.div`
   @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
 
   position: relative;
-  width: 360px;
-  height: 50px;  //! 여기의 height과 Icon의 height이 같아야 돋보기 아이콘이 정중앙에 배치된다.
+  width: 450px;
+  height: 40px;  //! 여기의 height과 Icon의 height이 같아야 돋보기 아이콘이 정중앙에 배치된다.
   background: #fff;
+  margin-top: 0rem;
   border-radius: 60px;
   transition: 0.5s;
   box-shadow: 0 0 0 3px #2573ef;
@@ -31,7 +32,7 @@ export const Icon = styled.div`
   top: 0;
   left: 0;
   width: 60px;
-  height: 50px;
+  height: 43px;
   background: #fff;
   border-radius: 60px;
   display: flex;
@@ -75,7 +76,7 @@ export const Input = styled.div`
     height: 100%;
     border: none;
     outline: none;
-    font-size: 18px;
+    font-size: 15px;
     padding: 10px 0;
   }
 `
@@ -111,9 +112,9 @@ export const Clear = styled.span`
 `
 
 export const Image = styled.img`
-  margin-right: 2rem;
+  margin-right: 1.5rem;
   width: auto;
-  height: 60px;
+  height: 80px;
   cursor: pointer;
 `
 
@@ -125,7 +126,7 @@ const Searchbar = () => {
   return (
     <Container>
       <Link to='/'>
-        <Image src={gaja} alt='logo' />
+        <Image src={gaja} alt='logo' className='header_logo' />
       </Link>
       <Search>
         <Icon />

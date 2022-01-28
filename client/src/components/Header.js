@@ -24,13 +24,13 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 `
-const Header = () => {
+const Header = ({ isLogin, setIsLogin, setAccessToken }) => {
   return (
     <Box>
       <GlobalStyle />
       <Container>
         <Searchbar />
-        <Navigation />
+        <Navigation isLogin={isLogin} setIsLogin={setIsLogin} setAccessToken={setAccessToken} />
       </Container>
     </Box>
   )

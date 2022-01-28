@@ -2,6 +2,7 @@ const { Users } = require('../../models')
 const { isAuthorized } = require('../tokenFunctions')
 
 module.exports = async (req, res) => {
+  const {email, password} = req.body
   const accessTokenData = isAuthorized(req)
 
   console.log(accessTokenData)
@@ -10,7 +11,8 @@ module.exports = async (req, res) => {
   } else {
     await Users.destroy({
       where: {
-        email: accessTokenData.email
+        email,
+        password
       }
     }).then(data => {
       if (!data) {
@@ -24,3 +26,4 @@ module.exports = async (req, res) => {
     })
   }
 }
+
